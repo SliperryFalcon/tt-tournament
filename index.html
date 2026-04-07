@@ -301,7 +301,8 @@ db.ref('matches').on('value',function(snap){
 // ---- STANDINGS HELPERS ----
 function getStandings(type,group){
   var relevant=Object.values(matches).filter(function(m){
-    return m.done&&m.type===type&&m.stage==='group'&&(type==='doubles'||m.group===group);
+    var league=(m.stage==='group'||m.stage==='league');
+    return m.done&&m.locked&&m.type===type&&league&&(type==='doubles'||m.group===group);
   });
   var players={};
   relevant.forEach(function(m){
@@ -348,10 +349,12 @@ function gotoPage(p){
   document.getElementById('nav-'+p).classList.add('active');
   if(p==='home') renderHome();
   if(p==='score'){
-    currentMatch=null;scoreMode='singles';
-    document.getElementById('score-tab-singles').classList.add('active');
-    document.getElementById('score-tab-doubles').classList.remove('active');
-    showScoreSubview('singles');
+    if(document.getElementById('score-live').style.display==='none'){
+      currentMatch=null; scoreMode='singles';
+      document.getElementById('score-tab-singles').classList.add('active');
+      document.getElementById('score-tab-doubles').classList.remove('active');
+      showScoreSubview('singles');
+    }
   }
   if(p==='table') showStandingsTab(currentStandingsTab);
   if(p==='matches') renderMatches();
@@ -645,7 +648,7 @@ function koRow(label,t1,t2,winner){
 
 // ---- HOME ----
 function renderHome(){
-  var total=Object.values(matches).filter(function(m){return m.done;}).length;
+  var total=Object.values(matches).filter(function(m){return m.done&&m.locked;}).length;
   var live=Object.values(matches).filter(function(m){return !m.done&&m.sets&&m.sets.length>0;}).length;
   var todayM=Object.values(matches).filter(function(m){return m.day===singlesDay;});
   document.getElementById('header-day').textContent='Day '+singlesDay+' of 4';
