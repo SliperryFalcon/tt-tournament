@@ -342,6 +342,7 @@ document.getElementById('start-singles-btn').addEventListener('click', function(
   var t1=(document.getElementById('p1').value||'').trim();
   var t2=(document.getElementById('p2').value||'').trim();
   if (!t1||!t2) { alert('Enter both player names.'); return; }
+  currentMatch = null;
   var m={id:Date.now(),type:'singles',group:singlesGroup,day:singlesDay,
     team1:t1,team2:t2,sets:[],currentSet:{s1:0,s2:0,history:[]},setWins:[0,0],done:false,winner:null,locked:false};
   currentMatch=m; saveMatch(m); showScoreSubview('live'); renderLive();
@@ -379,6 +380,7 @@ function renderFixtures() {
 }
 
 function startDoubleFixture(fix,existing) {
+  currentMatch = null;
   var m=existing||{id:Date.now(),fid:fix.fid,type:'doubles',group:'League',day:doublesDay,
     team1:fix.team1,team2:fix.team2,sets:[],currentSet:{s1:0,s2:0,history:[]},setWins:[0,0],done:false,winner:null,locked:false};
   if (!existing) saveMatch(m);
