@@ -349,12 +349,10 @@ function gotoPage(p){
   document.getElementById('nav-'+p).classList.add('active');
   if(p==='home') renderHome();
   if(p==='score'){
-    if(document.getElementById('score-live').style.display==='none'){
-      currentMatch=null; scoreMode='singles';
-      document.getElementById('score-tab-singles').classList.add('active');
-      document.getElementById('score-tab-doubles').classList.remove('active');
-      showScoreSubview('singles');
-    }
+    currentMatch=null; scoreMode='singles';
+    document.getElementById('score-tab-singles').classList.add('active');
+    document.getElementById('score-tab-doubles').classList.remove('active');
+    showScoreSubview('singles');
   }
   if(p==='table') showStandingsTab(currentStandingsTab);
   if(p==='matches') renderMatches();
