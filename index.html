@@ -281,9 +281,13 @@ db.ref('matches').on('value', function(snap) {
     if (pid==='matches') renderMatches();
     if (pid==='score' && document.getElementById('score-doubles').style.display!=='none') renderFixtures();
   }
+  // Only sync currentMatch from Firebase if we are NOT actively scoring
+  // (i.e. score-live is hidden). This prevents Firebase from overwriting
+  // in-progress scores mid-game.
   if (currentMatch && currentMatch.id && matches[currentMatch.id]) {
-    currentMatch = matches[currentMatch.id];
-    if (document.getElementById('score-live').style.display!=='none') renderLive();
+    if (document.getElementById('score-live').style.display === 'none') {
+      currentMatch = matches[currentMatch.id];
+    }
   }
 });
 
