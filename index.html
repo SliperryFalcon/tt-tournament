@@ -412,7 +412,8 @@ function renderFixtures(){
     appendFixtureItem(el,fix.fid,fix.team1,fix.team2,played,'league',false);
   });
   var standings=getStandings('doubles',null);
-  var leagueDone=standings.length>=5;
+  // All 10 league matches done = all 5 teams have played 4 matches each
+  var leagueDone=standings.length===5&&standings.every(function(t){return t.mp===4;});
   var divider=document.createElement('div');
   divider.style.cssText='border-top:1px solid #1e3a5f;margin-top:4px;padding:8px 0 4px';
   divider.innerHTML='<div class="card-title">Knockouts</div>';
