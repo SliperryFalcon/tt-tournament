@@ -112,6 +112,17 @@
   .overlay-btns{margin-top:20px;display:flex;gap:8px;flex-direction:column}
   .spinner{display:inline-block;width:16px;height:16px;border:2px solid #4fc3f7;border-top-color:transparent;border-radius:50%;animation:spin .8s linear infinite;vertical-align:middle;margin-right:6px}
   @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* Doubles fixture list */
+  .fixture-item{padding:12px;border-bottom:1px solid #1e3a5f;display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .fixture-item:last-child{border-bottom:none}
+  .fixture-teams{font-size:13px;font-weight:600;color:#e8edf5;flex:1}
+  .fixture-teams .vs{color:#f57c00;margin:0 5px;font-size:11px}
+  .fixture-status{font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap}
+  .fix-done{background:#1b5e20;color:#a5d6a7}
+  .fix-live{background:#4a2000;color:#ff8f00}
+  .fix-pending{background:#1a2a40;color:#7a9cc4}
+  .fixture-day{font-size:11px;color:#7a9cc4;margin-top:2px}
 </style>
 </head>
 <body>
@@ -130,35 +141,30 @@
 
   <div id="sec-home" class="section active"><div id="home-content"><div class="empty">Loading...</div></div></div>
 
+  <!-- SCORING -->
   <div id="sec-score" class="section">
-    <div id="score-setup" class="card">
-      <div class="card-title">New Match</div>
+    <!-- Type selector -->
+    <div class="card" id="score-type-selector">
+      <div class="card-title">Select Match Type</div>
+      <div class="toggle-group">
+        <button class="toggle-btn active" id="score-tab-singles">Singles</button>
+        <button class="toggle-btn" id="score-tab-doubles">Doubles</button>
+      </div>
+    </div>
+
+    <!-- Singles setup -->
+    <div id="singles-setup" class="card" style="margin-top:10px">
+      <div class="card-title">New Singles Match</div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Player 1</label><input class="form-input" id="p1" placeholder="e.g. Raj"></div>
+        <div class="form-group"><label class="form-label">Player 2</label><input class="form-input" id="p2" placeholder="e.g. Nikunj"></div>
+      </div>
       <div class="form-group">
-        <label class="form-label">Type</label>
+        <label class="form-label">Group</label>
         <div class="toggle-group">
-          <button class="toggle-btn active" id="type-singles">Singles (11 pts)</button>
-          <button class="toggle-btn" id="type-doubles">Doubles (21 pts)</button>
+          <button class="toggle-btn active" id="grp-a">Group A</button>
+          <button class="toggle-btn" id="grp-b">Group B</button>
         </div>
-      </div>
-      <div id="singles-form">
-        <div class="form-row">
-          <div class="form-group"><label class="form-label">Player 1</label><input class="form-input" id="p1" placeholder="e.g. Raj"></div>
-          <div class="form-group"><label class="form-label">Player 2</label><input class="form-input" id="p2" placeholder="e.g. Nikunj"></div>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Group</label>
-          <div class="toggle-group">
-            <button class="toggle-btn active" id="grp-a">Group A</button>
-            <button class="toggle-btn" id="grp-b">Group B</button>
-          </div>
-        </div>
-      </div>
-      <div id="doubles-form" style="display:none">
-        <div class="form-group"><label class="form-label">Team 1 — Player A</label><input class="form-input" id="d1a" placeholder="e.g. Raj"></div>
-        <div class="form-group"><label class="form-label">Team 1 — Player B</label><input class="form-input" id="d1b" placeholder="e.g. Nikunj"></div>
-        <div class="vs-badge"><hr><span>VS</span><hr></div>
-        <div class="form-group"><label class="form-label">Team 2 — Player A</label><input class="form-input" id="d2a" placeholder="e.g. Chatterjee"></div>
-        <div class="form-group"><label class="form-label">Team 2 — Player B</label><input class="form-input" id="d2b" placeholder="e.g. Saikat"></div>
       </div>
       <div class="form-group">
         <label class="form-label">Day</label>
@@ -169,11 +175,30 @@
           <button class="toggle-btn" id="day-btn-4">4</button>
         </div>
       </div>
-      <button class="btn btn-primary btn-full" id="start-match-btn">Start Match</button>
+      <button class="btn btn-primary btn-full" id="start-singles-btn">Start Match</button>
     </div>
+
+    <!-- Doubles fixture list -->
+    <div id="doubles-setup" style="display:none">
+      <div class="card" style="margin-top:10px">
+        <div class="card-title">Doubles — Select Fixture</div>
+        <div class="form-group">
+          <label class="form-label">Day</label>
+          <div class="toggle-group">
+            <button class="toggle-btn active" id="dday-btn-1">1</button>
+            <button class="toggle-btn" id="dday-btn-2">2</button>
+            <button class="toggle-btn" id="dday-btn-3">3</button>
+            <button class="toggle-btn" id="dday-btn-4">4</button>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:10px" id="fixtures-list"></div>
+    </div>
+
     <div id="score-live" style="display:none"></div>
   </div>
 
+  <!-- STANDINGS -->
   <div id="sec-table" class="section">
     <div class="group-tab-row">
       <button class="group-tab active" id="tab-singlesA">Singles A</button>
@@ -183,6 +208,7 @@
     <div id="standings-content" class="card" style="margin-top:10px"></div>
   </div>
 
+  <!-- MATCHES -->
   <div id="sec-matches" class="section">
     <div class="day-row">
       <button class="day-btn active" id="df-0">All</button>
@@ -239,12 +265,27 @@ const ADMIN_PIN = '2725';
 const WIN_AT = {singles:11, doubles:21};
 const DEUCE_AT = {singles:10, doubles:20};
 
-var localState = {matchType:'singles', matchGroup:'A', currentDay:1};
+// All 10 doubles fixtures — fixed, cannot be changed by users
+const DOUBLES_FIXTURES = [
+  {fid:'d01', team1:'Abhijit & Rishav',        team2:'Saikat & HN Chatterjee'},
+  {fid:'d02', team1:'Abhijit & Rishav',        team2:'Raj & Nikunj'},
+  {fid:'d03', team1:'Abhijit & Rishav',        team2:'Rahul & Aarav'},
+  {fid:'d04', team1:'Abhijit & Rishav',        team2:'Yogesh & Subrata'},
+  {fid:'d05', team1:'Saikat & HN Chatterjee', team2:'Raj & Nikunj'},
+  {fid:'d06', team1:'Saikat & HN Chatterjee', team2:'Rahul & Aarav'},
+  {fid:'d07', team1:'Saikat & HN Chatterjee', team2:'Yogesh & Subrata'},
+  {fid:'d08', team1:'Raj & Nikunj',            team2:'Rahul & Aarav'},
+  {fid:'d09', team1:'Raj & Nikunj',            team2:'Yogesh & Subrata'},
+  {fid:'d10', team1:'Rahul & Aarav',           team2:'Yogesh & Subrata'},
+];
+
+var localState = {matchType:'singles', matchGroup:'A', currentDay:1, doublesDay:1};
 var matches = {};
 var currentMatch = null;
 var currentDayFilter = 0;
 var currentStandingsTab = 'singlesA';
 var pendingEditMatchId = null;
+var scoreMode = 'singles';
 
 // Connection status
 onValue(ref(db, '.info/connected'), function(snap){
@@ -258,7 +299,7 @@ onValue(ref(db, '.info/connected'), function(snap){
   }
 });
 
-// Listen to all matches in real time
+// Listen to all matches
 onValue(ref(db, 'matches'), function(snap){
   matches = snap.val() || {};
   var active = document.querySelector('.section.active');
@@ -267,14 +308,15 @@ onValue(ref(db, 'matches'), function(snap){
     if(id==='home') renderHome();
     if(id==='table') showStandingsTab(currentStandingsTab);
     if(id==='matches') renderMatches();
+    if(id==='score' && scoreMode==='doubles') renderFixtures();
   }
   if(currentMatch && currentMatch.id){
     var updated = matches[currentMatch.id];
-    if(updated){ currentMatch = updated; renderLive(); }
+    if(updated){ currentMatch=updated; renderLive(); }
   }
 });
 
-function saveMatch(m){ set(ref(db, 'matches/'+m.id), m); }
+function saveMatch(m){ set(ref(db,'matches/'+m.id), m); }
 
 // NAV
 ['home','score','table','matches'].forEach(function(id){
@@ -291,22 +333,36 @@ function showSection(s){
   if(s==='home') renderHome();
   if(s==='table') showStandingsTab(currentStandingsTab);
   if(s==='matches') renderMatches();
+  if(s==='score'){
+    if(scoreMode==='doubles') renderFixtures();
+  }
 }
 
-document.getElementById('type-singles').addEventListener('click', function(){
-  localState.matchType='singles';
-  document.getElementById('singles-form').style.display='';
-  document.getElementById('doubles-form').style.display='none';
-  document.getElementById('type-singles').classList.add('active');
-  document.getElementById('type-doubles').classList.remove('active');
+// Single function to control all score view visibility
+function showScoreView(view){
+  // view: 'singles-setup' | 'doubles-setup' | 'live'
+  document.getElementById('score-type-selector').style.display = view==='live' ? 'none' : '';
+  document.getElementById('singles-setup').style.display = view==='singles-setup' ? '' : 'none';
+  document.getElementById('doubles-setup').style.display = view==='doubles-setup' ? '' : 'none';
+  document.getElementById('score-live').style.display = view==='live' ? '' : 'none';
+  if(view==='doubles-setup') renderFixtures();
+}
+
+// Score type tabs
+document.getElementById('score-tab-singles').addEventListener('click', function(){
+  scoreMode='singles';
+  document.getElementById('score-tab-singles').classList.add('active');
+  document.getElementById('score-tab-doubles').classList.remove('active');
+  showScoreView('singles-setup');
 });
-document.getElementById('type-doubles').addEventListener('click', function(){
-  localState.matchType='doubles';
-  document.getElementById('singles-form').style.display='none';
-  document.getElementById('doubles-form').style.display='';
-  document.getElementById('type-doubles').classList.add('active');
-  document.getElementById('type-singles').classList.remove('active');
+document.getElementById('score-tab-doubles').addEventListener('click', function(){
+  scoreMode='doubles';
+  document.getElementById('score-tab-doubles').classList.add('active');
+  document.getElementById('score-tab-singles').classList.remove('active');
+  showScoreView('doubles-setup');
 });
+
+// Singles group
 document.getElementById('grp-a').addEventListener('click', function(){
   localState.matchGroup='A';
   document.getElementById('grp-a').classList.add('active');
@@ -317,17 +373,29 @@ document.getElementById('grp-b').addEventListener('click', function(){
   document.getElementById('grp-b').classList.add('active');
   document.getElementById('grp-a').classList.remove('active');
 });
+
+// Singles day
 [1,2,3,4].forEach(function(d){
   document.getElementById('day-btn-'+d).addEventListener('click', function(){
     localState.currentDay=d;
     [1,2,3,4].forEach(function(x){ document.getElementById('day-btn-'+x).classList.toggle('active',x===d); });
-    document.getElementById('header-day').textContent='Day '+d+' of 4';
   });
 });
 
+// Doubles day
+[1,2,3,4].forEach(function(d){
+  document.getElementById('dday-btn-'+d).addEventListener('click', function(){
+    localState.doublesDay=d;
+    [1,2,3,4].forEach(function(x){ document.getElementById('dday-btn-'+x).classList.toggle('active',x===d); });
+  });
+});
+
+// Standings tabs
 ['singlesA','singlesB','doubles'].forEach(function(t){
   document.getElementById('tab-'+t).addEventListener('click', function(){ showStandingsTab(t); });
 });
+
+// Day filter
 [0,1,2,3,4].forEach(function(d){
   document.getElementById('df-'+d).addEventListener('click', function(){
     currentDayFilter=d;
@@ -336,26 +404,72 @@ document.getElementById('grp-b').addEventListener('click', function(){
   });
 });
 
-document.getElementById('start-match-btn').addEventListener('click', startMatch);
+// Start singles
+document.getElementById('start-singles-btn').addEventListener('click', function(){
+  var t1=(document.getElementById('p1').value||'').trim();
+  var t2=(document.getElementById('p2').value||'').trim();
+  if(!t1||!t2){alert('Enter both player names.');return;}
+  var m={id:Date.now(),type:'singles',group:localState.matchGroup,day:localState.currentDay,
+    team1:t1,team2:t2,sets:[],currentSet:{s1:0,s2:0,history:[]},setWins:[0,0],done:false,winner:null,locked:false};
+  currentMatch=m; saveMatch(m);
+  document.getElementById('singles-setup').style.display='none';
+  document.getElementById('score-type-selector').style.display='none';
+  document.getElementById('score-live').style.display='';
+  renderLive();
+});
 
-function startMatch(){
-  var t=localState.matchType, t1, t2;
-  if(t==='singles'){
-    t1=(document.getElementById('p1').value||'').trim();
-    t2=(document.getElementById('p2').value||'').trim();
-    if(!t1||!t2){alert('Enter both player names.');return;}
+// Render doubles fixture list
+function renderFixtures(){
+  var el=document.getElementById('fixtures-list');
+  el.innerHTML='<div class="card-title">Choose a fixture to score</div>';
+  DOUBLES_FIXTURES.forEach(function(fix){
+    // Find if this fixture has a match in the database
+    var played = Object.values(matches).find(function(m){
+      return m.type==='doubles' && m.fid===fix.fid;
+    });
+    var item=document.createElement('div');
+    item.className='fixture-item';
+    var statusHtml, dayHtml='', canStart=false;
+    if(played && played.locked){
+      statusHtml='<span class="fixture-status fix-done">Done</span>';
+      dayHtml='<div class="fixture-day">Day '+played.day+'</div>';
+    } else if(played && !played.locked){
+      statusHtml='<span class="fixture-status fix-live">In Progress</span>';
+      canStart=true;
+    } else {
+      statusHtml='<span class="fixture-status fix-pending">Pending</span>';
+      canStart=true;
+    }
+    item.innerHTML='<div style="flex:1">'+
+      '<div class="fixture-teams">'+fix.team1+'<span class="vs">vs</span>'+fix.team2+'</div>'+
+      dayHtml+
+      '</div>'+statusHtml;
+    if(canStart){
+      var btn=document.createElement('button');
+      btn.className='btn btn-primary btn-sm';
+      btn.style.marginLeft='8px';
+      btn.textContent= played ? 'Resume' : 'Start';
+      (function(f, p){
+        btn.addEventListener('click', function(){ startDoubleFixture(f, p); });
+      })(fix, played||null);
+      item.appendChild(btn);
+    }
+    el.appendChild(item);
+  });
+}
+
+function startDoubleFixture(fix, existing){
+  var m;
+  if(existing){
+    m=existing;
   } else {
-    var d1a=(document.getElementById('d1a').value||'').trim();
-    var d1b=(document.getElementById('d1b').value||'').trim();
-    var d2a=(document.getElementById('d2a').value||'').trim();
-    var d2b=(document.getElementById('d2b').value||'').trim();
-    if(!d1a||!d1b||!d2a||!d2b){alert('Enter all four names.');return;}
-    t1=d1a+' & '+d1b; t2=d2a+' & '+d2b;
+    m={id:Date.now(),fid:fix.fid,type:'doubles',group:'League',day:localState.doublesDay,
+      team1:fix.team1,team2:fix.team2,sets:[],currentSet:{s1:0,s2:0,history:[]},setWins:[0,0],done:false,winner:null,locked:false};
+    saveMatch(m);
   }
-  var m={id:Date.now(),type:t,group:t==='singles'?localState.matchGroup:'League',day:localState.currentDay,team1:t1,team2:t2,sets:[],currentSet:{s1:0,s2:0,history:[]},setWins:[0,0],done:false,winner:null,locked:false};
   currentMatch=m;
-  saveMatch(m);
-  document.getElementById('score-setup').style.display='none';
+  document.getElementById('doubles-setup').style.display='none';
+  document.getElementById('score-type-selector').style.display='none';
   document.getElementById('score-live').style.display='';
   renderLive();
 }
@@ -461,16 +575,14 @@ function lockMatch(){
   if(!m) return;
   m.locked=true; saveMatch(m);
   currentMatch=null;
-  document.getElementById('score-setup').style.display='';
-  document.getElementById('score-live').style.display='none';
+  showScoreView(scoreMode==='doubles' ? 'doubles-setup' : 'singles-setup');
 }
 
 function exitMatch(){
   if(currentMatch&&currentMatch.done){lockMatch();return;}
   if(confirm('Exit without saving?')){
     currentMatch=null;
-    document.getElementById('score-setup').style.display='';
-    document.getElementById('score-live').style.display='none';
+    showScoreView(scoreMode==='doubles' ? 'doubles-setup' : 'singles-setup');
   }
 }
 
@@ -492,6 +604,7 @@ function closeOverlay(){
   if(currentMatch) renderLive();
 }
 
+// PIN modal
 document.getElementById('pin-cancel').addEventListener('click', function(){
   document.getElementById('pin-modal').style.display='none';
   pendingEditMatchId=null;
@@ -528,9 +641,8 @@ function doAdminEdit(matchId){
   m.locked=false; m.done=false; m.winner=null;
   m.setWins=[0,0]; m.sets=[]; m.currentSet={s1:0,s2:0,history:[]};
   currentMatch=m; saveMatch(m);
-  showSection('score');
-  document.getElementById('score-setup').style.display='none';
-  document.getElementById('score-live').style.display='';
+  scoreMode=m.type==='doubles'?'doubles':'singles';
+  showScoreView('live');
   renderLive();
 }
 
@@ -592,7 +704,7 @@ function showStandingsTab(tab){
   var el=document.getElementById('standings-content');
   if(!rows.length){el.innerHTML='<div class="empty">No completed matches yet</div>';return;}
   el.innerHTML='<div class="card-title">'+title+'</div>'+
-    '<table class="pt-table"><tr><th>Player</th><th>MP</th><th>W</th><th>L</th><th>SW</th><th>SL</th><th>SD</th><th>PF</th><th>PA</th><th>Pts</th></tr>'+
+    '<table class="pt-table"><tr><th>Team</th><th>MP</th><th>W</th><th>L</th><th>SW</th><th>SL</th><th>SD</th><th>PF</th><th>PA</th><th>Pts</th></tr>'+
     rows.map(function(p,i){
       return '<tr><td><span class="rank-badge '+(i===0?'r1':i===1?'r2':i===2?'r3':'')+'">'+(i+1)+'</span>'+p.name+'</td>'+
         '<td>'+p.mp+'</td><td>'+p.mw+'</td><td>'+p.ml+'</td><td>'+p.sw+'</td><td>'+p.sl+'</td><td>'+(p.sw-p.sl)+'</td><td>'+p.pf+'</td><td>'+p.pa+'</td><td><strong>'+p.pts+'</strong></td></tr>';
