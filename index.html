@@ -286,16 +286,15 @@ db.ref('matches').on('value',function(snap){
   var ap=document.querySelector('.page.active');
   if(ap){
     var pid=ap.id.replace('page-','');
+    var liveVisible=document.getElementById('score-live').style.display!=='none';
     if(pid==='home') renderHome();
     if(pid==='table') showStandingsTab(currentStandingsTab);
     if(pid==='matches') renderMatches();
-    if(pid==='score' && document.getElementById('score-doubles').style.display!=='none') renderFixtures();
+    // Only refresh fixtures if doubles list is showing AND we are NOT in a live match
+    if(pid==='score' && !liveVisible && document.getElementById('score-doubles').style.display!=='none') renderFixtures();
+    // Do NOT touch any score subviews here — scoring UI is managed only by user actions
   }
-  if(currentMatch&&currentMatch.id&&matches[currentMatch.id]){
-    if(document.getElementById('score-live').style.display==='none'){
-      currentMatch=matches[currentMatch.id];
-    }
-  }
+  // Never overwrite currentMatch from Firebase while scoring is active
 });
 
 // ---- STANDINGS HELPERS ----
