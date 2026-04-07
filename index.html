@@ -11,17 +11,18 @@
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0f1b2d;color:#e8edf5;min-height:100vh}
 .app{max-width:480px;margin:0 auto;padding:0 0 80px}
 .nav{display:flex;background:#162236;border-bottom:1px solid #1e3a5f;position:sticky;top:0;z-index:100}
-.nav-btn{flex:1;padding:14px 4px;font-size:12px;font-weight:600;color:#7a9cc4;background:none;border:none;cursor:pointer;text-transform:uppercase;border-bottom:3px solid transparent}
+.nav-btn{flex:1;padding:12px 2px;font-size:11px;font-weight:600;color:#7a9cc4;background:none;border:none;cursor:pointer;text-transform:uppercase;border-bottom:3px solid transparent}
 .nav-btn.active{color:#4fc3f7;border-bottom-color:#4fc3f7}
-.header{background:#1565c0;padding:20px 16px 16px;text-align:center}
-.header h1{font-size:22px;font-weight:700;color:#fff}
-.header p{font-size:13px;color:#90caf9;margin-top:4px}
+.header{background:#1565c0;padding:16px 16px 12px;text-align:center}
+.header h1{font-size:20px;font-weight:700;color:#fff}
+.header p{font-size:12px;color:#90caf9;margin-top:3px}
 .card{background:#162236;border-radius:12px;margin:12px 12px 0;padding:16px;border:1px solid #1e3a5f}
-.card-title{font-size:13px;font-weight:700;color:#4fc3f7;text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px}
+.card-title{font-size:12px;font-weight:700;color:#4fc3f7;text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px}
 .btn{padding:10px 18px;border-radius:8px;border:none;font-size:14px;font-weight:600;cursor:pointer}
 .btn-primary{background:#1976d2;color:#fff}
 .btn-danger{background:#c62828;color:#fff}
 .btn-secondary{background:#1e3a5f;color:#90caf9;border:1px solid #2a5080}
+.btn-warning{background:#e65100;color:#fff}
 .btn-sm{padding:6px 12px;font-size:12px}
 .btn-full{width:100%;margin-top:8px;display:block}
 .btn:disabled{opacity:.4;cursor:not-allowed}
@@ -56,13 +57,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .set-win{background:#1b5e20;color:#a5d6a7}
 .set-lose{background:#4a1010;color:#ef9a9a}
 .set-ongoing{background:#1a2a40;color:#7a9cc4}
-.pt-table{width:100%;border-collapse:collapse;font-size:13px}
-.pt-table th{padding:8px 6px;color:#7a9cc4;font-size:11px;font-weight:700;text-transform:uppercase;border-bottom:1px solid #1e3a5f;text-align:center}
+.pt-table{width:100%;border-collapse:collapse;font-size:12px}
+.pt-table th{padding:7px 4px;color:#7a9cc4;font-size:10px;font-weight:700;text-transform:uppercase;border-bottom:1px solid #1e3a5f;text-align:center}
 .pt-table th:first-child{text-align:left}
-.pt-table td{padding:8px 6px;border-bottom:1px solid #0f1b2d;text-align:center}
-.pt-table td:first-child{text-align:left;font-weight:600;font-size:12px}
+.pt-table td{padding:7px 4px;border-bottom:1px solid #0f1b2d;text-align:center}
+.pt-table td:first-child{text-align:left;font-weight:600;font-size:11px}
 .pt-table tr:last-child td{border-bottom:none}
-.rank-badge{display:inline-block;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:700;line-height:20px;text-align:center;margin-right:4px}
+.rank-badge{display:inline-block;width:18px;height:18px;border-radius:50%;font-size:10px;font-weight:700;line-height:18px;text-align:center;margin-right:3px}
 .r1{background:#f57c00;color:#fff}.r2{background:#455a64;color:#fff}.r3{background:#4a2900;color:#ff8f00}
 .match-item{padding:12px;border-bottom:1px solid #1e3a5f}
 .match-item:last-child{border-bottom:none}
@@ -74,8 +75,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:5px;vertical-align:middle}
 .dot-done{background:#66bb6a}.dot-live{background:#ff7043}.dot-up{background:#455a64}
 .page{display:none}.page.active{display:block}
-.group-tab-row{display:flex;gap:6px;padding:0 12px;margin-top:12px}
-.group-tab{padding:7px 16px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;background:#1e3a5f;color:#7a9cc4;border:none}
+.group-tab-row{display:flex;gap:6px;padding:0 12px;margin-top:12px;flex-wrap:wrap}
+.group-tab{padding:7px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;background:#1e3a5f;color:#7a9cc4;border:none}
 .group-tab.active{background:#1976d2;color:#fff}
 .day-row{display:flex;gap:6px;padding:0 12px;margin-top:12px;flex-wrap:wrap}
 .day-btn{padding:6px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;background:#1e3a5f;color:#7a9cc4;border:none}
@@ -90,7 +91,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .fixture-teams{font-size:13px;font-weight:600;color:#e8edf5;flex:1}
 .fixture-day{font-size:11px;color:#7a9cc4;margin-top:2px}
 .fix-status{font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap}
-.fix-done{background:#1b5e20;color:#a5d6a7}.fix-live{background:#4a2000;color:#ff8f00}.fix-pending{background:#1a2a40;color:#7a9cc4}
+.fix-done{background:#1b5e20;color:#a5d6a7}.fix-live{background:#4a2000;color:#ff8f00}.fix-pending{background:#1a2a40;color:#7a9cc4}.fix-locked{background:#1a0a30;color:#ce93d8}
+.ko-section{margin:10px 12px 0}
+.ko-header{font-size:12px;font-weight:700;color:#ffd54f;text-transform:uppercase;letter-spacing:.8px;padding:10px 0 6px}
+.ko-tbd{font-size:12px;color:#455a64;padding:8px 0;font-style:italic}
 .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:300;padding:20px}
 .modal{background:#162236;border-radius:16px;padding:24px;width:100%;max-width:300px;border:1px solid #2a5080}
 .modal h3{font-size:16px;font-weight:700;color:#e8edf5;margin-bottom:6px}
@@ -103,11 +107,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:200;padding:20px}
 .overlay-box{background:#162236;border-radius:16px;padding:28px 24px;text-align:center;max-width:320px;width:100%;border:2px solid #f57c00}
 .overlay-box.winner-box{border-color:#ffd54f}
-.overlay-title{font-size:28px;font-weight:800;margin-bottom:8px}
+.overlay-title{font-size:26px;font-weight:800;margin-bottom:8px}
 .overlay-sub{font-size:14px;color:#90caf9}
 .overlay-btns{margin-top:20px;display:flex;gap:8px;flex-direction:column}
 .spinner{display:inline-block;width:14px;height:14px;border:2px solid #4fc3f7;border-top-color:transparent;border-radius:50%;animation:spin .8s linear infinite;vertical-align:middle;margin-right:6px}
 @keyframes spin{to{transform:rotate(360deg)}}
+.score-type-bar{display:flex;gap:6px;padding:0 12px;margin-top:12px;flex-wrap:wrap}
+.score-type-btn{padding:8px 16px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid #2a5080;background:#1e3a5f;color:#7a9cc4}
+.score-type-btn.active{background:#1976d2;color:#fff;border-color:#1976d2}
+.ko-badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;background:#4a1a6a;color:#ce93d8;margin-left:6px;vertical-align:middle}
 </style>
 </head>
 <body>
@@ -131,6 +139,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         <button class="toggle-btn" id="score-tab-doubles">Doubles</button>
       </div>
     </div>
+    <!-- Singles -->
     <div id="score-singles">
       <div class="card" style="margin-top:10px">
         <div class="card-title">Singles Match</div>
@@ -139,10 +148,20 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
           <div class="form-group"><label class="form-label">Player 2</label><input class="form-input" id="p2" placeholder="e.g. Nikunj"></div>
         </div>
         <div class="form-group">
-          <label class="form-label">Group</label>
+          <label class="form-label">Stage</label>
           <div class="toggle-group">
-            <button class="toggle-btn active" id="grp-a">Group A</button>
-            <button class="toggle-btn" id="grp-b">Group B</button>
+            <button class="toggle-btn active" id="singles-stage-group">Group</button>
+            <button class="toggle-btn" id="singles-stage-sf">Semi Final</button>
+            <button class="toggle-btn" id="singles-stage-f">Final</button>
+          </div>
+        </div>
+        <div id="singles-group-opts">
+          <div class="form-group">
+            <label class="form-label">Group</label>
+            <div class="toggle-group">
+              <button class="toggle-btn active" id="grp-a">Group A</button>
+              <button class="toggle-btn" id="grp-b">Group B</button>
+            </div>
           </div>
         </div>
         <div class="form-group">
@@ -157,6 +176,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         <button class="btn btn-primary btn-full" id="start-singles-btn">Start Match</button>
       </div>
     </div>
+    <!-- Doubles -->
     <div id="score-doubles" style="display:none">
       <div class="card" style="margin-top:10px">
         <div class="card-title">Doubles — Pick Fixture</div>
@@ -201,7 +221,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 <div class="modal-bg" id="pin-modal" style="display:none">
   <div class="modal">
-    <h3>Admin Access</h3><p>Enter PIN to edit this match</p>
+    <h3>Admin Access</h3>
+    <p id="pin-modal-msg">Enter PIN</p>
     <input type="password" id="pin-input" maxlength="10" placeholder="••••">
     <div class="modal-err" id="pin-err"></div>
     <div class="modal-btns">
@@ -219,13 +240,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   </div>
 </div>
 
-<!-- Firebase SDKs loaded as regular scripts (no module) -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 <script>
 var ADMIN_PIN = '2725';
-var WIN_AT = {singles:11,doubles:21};
-var DEUCE_AT = {singles:10,doubles:20};
+var WIN_AT = {singles:11, doubles:21};
+var DEUCE_AT = {singles:10, doubles:20};
+
+// All 10 doubles league fixtures
 var DOUBLES_FIXTURES = [
   {fid:'d01',team1:'Abhijit & Rishav',team2:'Saikat & HN Chatterjee'},
   {fid:'d02',team1:'Abhijit & Rishav',team2:'Raj & Nikunj'},
@@ -239,15 +261,20 @@ var DOUBLES_FIXTURES = [
   {fid:'d10',team1:'Rahul & Aarav',team2:'Yogesh & Subrata'},
 ];
 
-// Firebase init
+// Knockout fixture IDs
+var KO_FIDS = {
+  dSF1:'dSF1', dSF2:'dSF2', dFinal:'dFinal',
+  sSF1:'sSF1', sSF2:'sSF2', sFinal:'sFinal'
+};
+
 firebase.initializeApp({
-  apiKey: "AIzaSyBE5M0wLDaiY5zMk8fioZzOMk2tDzZO0gg",
-  authDomain: "tt-tournament-2026.firebaseapp.com",
-  databaseURL: "https://tt-tournament-2026-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "tt-tournament-2026",
-  storageBucket: "tt-tournament-2026.firebasestorage.app",
-  messagingSenderId: "953586518356",
-  appId: "1:953586518356:web:05b88de06538a2546ca0c1"
+  apiKey:"AIzaSyBE5M0wLDaiY5zMk8fioZzOMk2tDzZO0gg",
+  authDomain:"tt-tournament-2026.firebaseapp.com",
+  databaseURL:"https://tt-tournament-2026-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId:"tt-tournament-2026",
+  storageBucket:"tt-tournament-2026.firebasestorage.app",
+  messagingSenderId:"953586518356",
+  appId:"1:953586518356:web:05b88de06538a2546ca0c1"
 });
 var db = firebase.database();
 
@@ -256,148 +283,243 @@ var currentMatch = null;
 var currentDayFilter = 0;
 var currentStandingsTab = 'singlesA';
 var pendingEditMatchId = null;
+var pendingAction = null;
 var singlesGroup = 'A';
 var singlesDay = 1;
+var singlesStage = 'group';
 var doublesDay = 1;
 var scoreMode = 'singles';
 
-function saveMatch(m) { db.ref('matches/'+m.id).set(m); }
+function saveMatch(m){ db.ref('matches/'+m.id).set(m); }
 
-// Connection bar
-db.ref('.info/connected').on('value', function(snap) {
-  var bar = document.getElementById('conn-bar');
-  if (snap.val()) { bar.className='conn-bar conn-ok'; bar.textContent='🟢 Live — all devices in sync'; }
-  else { bar.className='conn-bar conn-err'; bar.textContent='🔴 Offline — reconnecting...'; }
+// ---- FIREBASE ----
+db.ref('.info/connected').on('value',function(snap){
+  var bar=document.getElementById('conn-bar');
+  if(snap.val()){bar.className='conn-bar conn-ok';bar.textContent='🟢 Live — all devices in sync';}
+  else{bar.className='conn-bar conn-err';bar.textContent='🔴 Offline — reconnecting...';}
 });
 
-// Live sync
-db.ref('matches').on('value', function(snap) {
-  matches = snap.val() || {};
-  var ap = document.querySelector('.page.active');
-  if (ap) {
-    var pid = ap.id.replace('page-','');
-    if (pid==='home') renderHome();
-    if (pid==='table') showStandingsTab(currentStandingsTab);
-    if (pid==='matches') renderMatches();
-    if (pid==='score' && document.getElementById('score-doubles').style.display!=='none') renderFixtures();
+db.ref('matches').on('value',function(snap){
+  matches=snap.val()||{};
+  var ap=document.querySelector('.page.active');
+  if(ap){
+    var pid=ap.id.replace('page-','');
+    if(pid==='home') renderHome();
+    if(pid==='table') showStandingsTab(currentStandingsTab);
+    if(pid==='matches') renderMatches();
+    if(pid==='score' && document.getElementById('score-doubles').style.display!=='none') renderFixtures();
   }
-  // Only sync currentMatch from Firebase if we are NOT actively scoring
-  // (i.e. score-live is hidden). This prevents Firebase from overwriting
-  // in-progress scores mid-game.
-  if (currentMatch && currentMatch.id && matches[currentMatch.id]) {
-    if (document.getElementById('score-live').style.display === 'none') {
-      currentMatch = matches[currentMatch.id];
+  // Only update currentMatch from Firebase when NOT actively scoring
+  if(currentMatch && currentMatch.id && matches[currentMatch.id]){
+    if(document.getElementById('score-live').style.display==='none'){
+      currentMatch=matches[currentMatch.id];
     }
   }
 });
 
-// Show/hide score subviews
-function showScoreSubview(v) {
-  document.getElementById('score-singles').style.display = v==='singles' ? '' : 'none';
-  document.getElementById('score-doubles').style.display = v==='doubles' ? '' : 'none';
-  document.getElementById('score-live').style.display    = v==='live'    ? '' : 'none';
-  if (v==='doubles') renderFixtures();
+// ---- STANDINGS HELPERS ----
+function getStandings(type, group){
+  var relevant=Object.values(matches).filter(function(m){
+    return m.done && m.type===type && m.stage==='group' && (type==='doubles'||m.group===group);
+  });
+  var players={};
+  relevant.forEach(function(m){
+    [m.team1,m.team2].forEach(function(t){if(!players[t])players[t]={name:t,mp:0,mw:0,ml:0,pts:0,sw:0,sl:0,pf:0,pa:0};});
+    players[m.team1].mp++; players[m.team2].mp++;
+    var w=m.winner===1?m.team1:m.team2, l=m.winner===1?m.team2:m.team1;
+    players[w].mw++; players[w].pts+=3; players[l].ml++;
+    m.sets.forEach(function(s){
+      players[m.team1].pf+=s.s1; players[m.team1].pa+=s.s2;
+      players[m.team2].pf+=s.s2; players[m.team2].pa+=s.s1;
+      if(s.winner===1){players[m.team1].sw++;players[m.team2].sl++;}
+      else{players[m.team2].sw++;players[m.team1].sl++;}
+    });
+  });
+  return Object.values(players).sort(function(a,b){
+    if(b.pts!==a.pts) return b.pts-a.pts;
+    var sd=(b.sw-b.sl)-(a.sw-a.sl); if(sd!==0) return sd;
+    return (b.pf-b.pa)-(a.pf-a.pa);
+  });
 }
 
-// NAV
-['home','score','table','matches'].forEach(function(id) {
-  document.getElementById('nav-'+id).addEventListener('click', function() { gotoPage(id); });
+function getKOWinner(fid){
+  var m=Object.values(matches).find(function(x){ return x.fid===fid && x.done && x.locked; });
+  if(!m) return null;
+  return m.winner===1?m.team1:m.team2;
+}
+
+// ---- SCORE SUBVIEWS ----
+function showScoreSubview(v){
+  document.getElementById('score-singles').style.display=v==='singles'?'':'none';
+  document.getElementById('score-doubles').style.display=v==='doubles'?'':'none';
+  document.getElementById('score-live').style.display=v==='live'?'':'none';
+  if(v==='doubles') renderFixtures();
+}
+
+// ---- NAV ----
+['home','score','table','matches'].forEach(function(id){
+  document.getElementById('nav-'+id).addEventListener('click',function(){ gotoPage(id); });
 });
-function gotoPage(p) {
-  ['home','score','table','matches'].forEach(function(id) {
+function gotoPage(p){
+  ['home','score','table','matches'].forEach(function(id){
     document.getElementById('page-'+id).classList.remove('active');
     document.getElementById('nav-'+id).classList.remove('active');
   });
   document.getElementById('page-'+p).classList.add('active');
   document.getElementById('nav-'+p).classList.add('active');
-  if (p==='home') renderHome();
-  if (p==='score') { scoreMode='singles'; document.getElementById('score-tab-singles').classList.add('active'); document.getElementById('score-tab-doubles').classList.remove('active'); showScoreSubview('singles'); }
-  if (p==='table') showStandingsTab(currentStandingsTab);
-  if (p==='matches') renderMatches();
+  if(p==='home') renderHome();
+  if(p==='score'){
+    currentMatch=null;
+    scoreMode='singles';
+    document.getElementById('score-tab-singles').classList.add('active');
+    document.getElementById('score-tab-doubles').classList.remove('active');
+    showScoreSubview('singles');
+  }
+  if(p==='table') showStandingsTab(currentStandingsTab);
+  if(p==='matches') renderMatches();
 }
 
-// Score type toggle
-document.getElementById('score-tab-singles').addEventListener('click', function() {
-  scoreMode='singles';
+// ---- SCORE TYPE TOGGLE ----
+document.getElementById('score-tab-singles').addEventListener('click',function(){
+  scoreMode='singles'; currentMatch=null;
   document.getElementById('score-tab-singles').classList.add('active');
   document.getElementById('score-tab-doubles').classList.remove('active');
   showScoreSubview('singles');
 });
-document.getElementById('score-tab-doubles').addEventListener('click', function() {
-  scoreMode='doubles';
+document.getElementById('score-tab-doubles').addEventListener('click',function(){
+  scoreMode='doubles'; currentMatch=null;
   document.getElementById('score-tab-doubles').classList.add('active');
   document.getElementById('score-tab-singles').classList.remove('active');
   showScoreSubview('doubles');
 });
 
-// Singles setup
-document.getElementById('grp-a').addEventListener('click', function() { singlesGroup='A'; document.getElementById('grp-a').classList.add('active'); document.getElementById('grp-b').classList.remove('active'); });
-document.getElementById('grp-b').addEventListener('click', function() { singlesGroup='B'; document.getElementById('grp-b').classList.add('active'); document.getElementById('grp-a').classList.remove('active'); });
-[1,2,3,4].forEach(function(d) {
-  document.getElementById('sday-'+d).addEventListener('click', function() {
+// ---- SINGLES STAGE ----
+['group','sf','f'].forEach(function(s){
+  document.getElementById('singles-stage-'+s).addEventListener('click',function(){
+    singlesStage=s==='group'?'group':s==='sf'?'semifinal':'final';
+    ['group','sf','f'].forEach(function(x){ document.getElementById('singles-stage-'+x).classList.toggle('active',x===s); });
+    document.getElementById('singles-group-opts').style.display=s==='group'?'':'none';
+  });
+});
+document.getElementById('grp-a').addEventListener('click',function(){ singlesGroup='A'; document.getElementById('grp-a').classList.add('active'); document.getElementById('grp-b').classList.remove('active'); });
+document.getElementById('grp-b').addEventListener('click',function(){ singlesGroup='B'; document.getElementById('grp-b').classList.add('active'); document.getElementById('grp-a').classList.remove('active'); });
+[1,2,3,4].forEach(function(d){
+  document.getElementById('sday-'+d).addEventListener('click',function(){
     singlesDay=d; [1,2,3,4].forEach(function(x){ document.getElementById('sday-'+x).classList.toggle('active',x===d); });
   });
 });
-document.getElementById('start-singles-btn').addEventListener('click', function() {
+
+document.getElementById('start-singles-btn').addEventListener('click',function(){
   var t1=(document.getElementById('p1').value||'').trim();
   var t2=(document.getElementById('p2').value||'').trim();
-  if (!t1||!t2) { alert('Enter both player names.'); return; }
-  currentMatch = null;
-  var m={id:Date.now(),type:'singles',group:singlesGroup,day:singlesDay,
-    team1:t1,team2:t2,sets:[],currentSet:{s1:0,s2:0,history:[]},setWins:[0,0],done:false,winner:null,locked:false};
+  if(!t1||!t2){alert('Enter both player names.');return;}
+  currentMatch=null;
+  var m={
+    id:Date.now(), type:'singles',
+    stage:singlesStage,
+    group:singlesStage==='group'?singlesGroup:null,
+    day:singlesDay,
+    team1:t1, team2:t2,
+    sets:[], currentSet:{s1:0,s2:0,history:[]},
+    setWins:[0,0], done:false, winner:null, locked:false
+  };
   currentMatch=m; saveMatch(m); showScoreSubview('live'); renderLive();
 });
 
-// Doubles day
-[1,2,3,4].forEach(function(d) {
-  document.getElementById('dday-'+d).addEventListener('click', function() {
+// ---- DOUBLES DAY ----
+[1,2,3,4].forEach(function(d){
+  document.getElementById('dday-'+d).addEventListener('click',function(){
     doublesDay=d; [1,2,3,4].forEach(function(x){ document.getElementById('dday-'+x).classList.toggle('active',x===d); });
   });
 });
 
-function renderFixtures() {
-  var el=document.getElementById('fixtures-list'); el.innerHTML='<div class="card-title">Select a fixture</div>';
-  DOUBLES_FIXTURES.forEach(function(fix) {
+// ---- DOUBLES FIXTURES (league + knockouts) ----
+function renderFixtures(){
+  var el=document.getElementById('fixtures-list');
+  el.innerHTML='<div class="card-title">League Fixtures</div>';
+
+  DOUBLES_FIXTURES.forEach(function(fix){
     var played=Object.values(matches).find(function(m){ return m.type==='doubles'&&m.fid===fix.fid; });
-    var isDone=played&&played.locked, isLive=played&&!played.locked;
-    var item=document.createElement('div'); item.className='fixture-item';
-    var infoDiv=document.createElement('div'); infoDiv.style.flex='1';
-    infoDiv.innerHTML='<div class="fixture-teams">'+fix.team1+'<span class="vs">vs</span>'+fix.team2+'</div>'+
-      (isDone?'<div class="fixture-day">Day '+played.day+' · '+(played.winner===1?played.team1:played.team2).split(' ')[0]+' won</div>':'');
-    var right=document.createElement('div'); right.style.cssText='display:flex;align-items:center;gap:8px';
-    var badge=document.createElement('span');
-    badge.className='fix-status '+(isDone?'fix-done':isLive?'fix-live':'fix-pending');
-    badge.textContent=isDone?'Done':isLive?'Live':'Pending';
-    right.appendChild(badge);
-    if (!isDone) {
-      var btn=document.createElement('button'); btn.className='btn btn-primary btn-sm';
-      btn.textContent=isLive?'Resume':'Start';
-      (function(f,p){ btn.addEventListener('click',function(){ startDoubleFixture(f,p); }); })(fix,played||null);
-      right.appendChild(btn);
-    }
-    item.appendChild(infoDiv); item.appendChild(right); el.appendChild(item);
+    renderFixtureItem(el, fix.fid, fix.team1, fix.team2, played, 'league');
   });
+
+  // Doubles knockouts
+  var standings=getStandings('doubles',null);
+  var leagueDone=standings.length>=5; // at least 5 teams have played = enough data
+
+  el.innerHTML+='<div style="border-top:1px solid #1e3a5f;margin-top:4px;padding-top:4px"><div class="card-title" style="padding-top:8px">Knockouts</div></div>';
+
+  // SF1: 1st vs 4th
+  var sf1t1=leagueDone&&standings[0]?standings[0].name:'TBD (League 1st)';
+  var sf1t2=leagueDone&&standings[3]?standings[3].name:'TBD (League 4th)';
+  var sf1played=Object.values(matches).find(function(m){ return m.fid===KO_FIDS.dSF1; });
+  renderFixtureItem(el, KO_FIDS.dSF1, sf1t1, sf1t2, sf1played, 'SF1', !leagueDone);
+
+  // SF2: 2nd vs 3rd
+  var sf2t1=leagueDone&&standings[1]?standings[1].name:'TBD (League 2nd)';
+  var sf2t2=leagueDone&&standings[2]?standings[2].name:'TBD (League 3rd)';
+  var sf2played=Object.values(matches).find(function(m){ return m.fid===KO_FIDS.dSF2; });
+  renderFixtureItem(el, KO_FIDS.dSF2, sf2t1, sf2t2, sf2played, 'SF2', !leagueDone);
+
+  // Final
+  var fw1=getKOWinner(KO_FIDS.dSF1)||'TBD (SF1 winner)';
+  var fw2=getKOWinner(KO_FIDS.dSF2)||'TBD (SF2 winner)';
+  var sf1done=!!getKOWinner(KO_FIDS.dSF1), sf2done=!!getKOWinner(KO_FIDS.dSF2);
+  var finalPlayed=Object.values(matches).find(function(m){ return m.fid===KO_FIDS.dFinal; });
+  renderFixtureItem(el, KO_FIDS.dFinal, fw1, fw2, finalPlayed, 'Final', !(sf1done&&sf2done));
 }
 
-function startDoubleFixture(fix,existing) {
-  currentMatch = null;
-  var m=existing||{id:Date.now(),fid:fix.fid,type:'doubles',group:'League',day:doublesDay,
-    team1:fix.team1,team2:fix.team2,sets:[],currentSet:{s1:0,s2:0,history:[]},setWins:[0,0],done:false,winner:null,locked:false};
-  if (!existing) saveMatch(m);
+function renderFixtureItem(el, fid, t1, t2, played, label, locked){
+  var isDone=played&&played.locked, isLive=played&&!played.locked;
+  var item=document.createElement('div'); item.className='fixture-item';
+  var infoDiv=document.createElement('div'); infoDiv.style.flex='1';
+  var koTag=label!=='league'?'<span class="ko-badge">'+label+'</span>':'';
+  infoDiv.innerHTML='<div class="fixture-teams">'+t1+'<span class="vs">vs</span>'+t2+koTag+'</div>'+
+    (isDone?'<div class="fixture-day">Day '+played.day+' · '+(played.winner===1?played.team1:played.team2).split(' ')[0]+' won</div>':'');
+  var right=document.createElement('div'); right.style.cssText='display:flex;align-items:center;gap:8px';
+  var badge=document.createElement('span');
+  badge.className='fix-status '+(isDone?'fix-done':isLive?'fix-live':locked?'fix-locked':'fix-pending');
+  badge.textContent=isDone?'Done':isLive?'Live':locked?'Locked':'Pending';
+  right.appendChild(badge);
+  if(!isDone&&!locked){
+    var btn=document.createElement('button'); btn.className='btn btn-primary btn-sm';
+    btn.textContent=isLive?'Resume':'Start';
+    (function(f,p,tt1,tt2){
+      btn.addEventListener('click',function(){ startFixture(f,p,tt1,tt2,'doubles'); });
+    })(fid,played||null,t1,t2);
+    right.appendChild(btn);
+  }
+  item.appendChild(infoDiv); item.appendChild(right); el.appendChild(item);
+}
+
+function startFixture(fid, existing, t1, t2, type){
+  currentMatch=null;
+  var isKO=fid===KO_FIDS.dSF1||fid===KO_FIDS.dSF2||fid===KO_FIDS.dFinal;
+  var m=existing||{
+    id:Date.now(), fid:fid, type:type,
+    stage:isKO?'knockout':'league',
+    group:'League', day:doublesDay,
+    team1:t1, team2:t2,
+    sets:[], currentSet:{s1:0,s2:0,history:[]},
+    setWins:[0,0], done:false, winner:null, locked:false
+  };
+  if(!existing) saveMatch(m);
   currentMatch=m; showScoreSubview('live'); renderLive();
 }
 
-function renderLive() {
-  var m=currentMatch; if (!m) return;
+// ---- LIVE SCORING ----
+function renderLive(){
+  var m=currentMatch; if(!m) return;
   var el=document.getElementById('score-live');
   var s=m.currentSet, setNum=m.sets.length+1, canScore=!m.done&&!m.locked;
   var w1=s.s1>s.s2, w2=s.s2>s.s1;
   var setsHtml='';
   m.sets.forEach(function(st,i){ setsHtml+='<span class="set-badge '+(st.winner===1?'set-win':'set-lose')+'">Set '+(i+1)+': '+st.s1+'-'+st.s2+'</span>'; });
-  if (!m.done) setsHtml+='<span class="set-badge set-ongoing">Set '+setNum+': '+s.s1+'-'+s.s2+'</span>';
+  if(!m.done) setsHtml+='<span class="set-badge set-ongoing">Set '+setNum+': '+s.s1+'-'+s.s2+'</span>';
+  var stageLabel=m.stage==='group'?'Group '+(m.group||''):m.stage==='league'?'League':m.stage==='semifinal'?'Semi Final':'Final';
   el.innerHTML=
     '<div class="scoreboard">'+
-    '<div class="score-header"><span class="match-info">'+(m.type==='singles'?'Singles · Group '+m.group:'Doubles · League')+' · Day '+m.day+'</span>'+
+    '<div class="score-header"><span class="match-info">'+(m.type==='singles'?'Singles':'Doubles')+' · '+stageLabel+' · Day '+m.day+'</span>'+
     '<span class="set-info">'+(m.done?'Match Over':'Set '+setNum+' of 3')+'</span></div>'+
     '<div class="sets-row">'+(setsHtml||'<span style="color:#455a64;font-size:12px">No sets yet</span>')+'</div>'+
     '<div class="teams-row">'+
@@ -420,145 +542,184 @@ function renderLive() {
   var lb=document.getElementById('lbtn-lock'); if(lb) lb.addEventListener('click',lockMatch);
 }
 
-function addPoint(player) {
-  var m=currentMatch; if (!m||m.done) return;
-  var winScore=WIN_AT[m.type],deuceAt=DEUCE_AT[m.type],s=m.currentSet;
+function addPoint(player){
+  var m=currentMatch; if(!m||m.done) return;
+  var winScore=WIN_AT[m.type], deuceAt=DEUCE_AT[m.type], s=m.currentSet;
   s.history.push({s1:s.s1,s2:s.s2});
-  if (player===1) s.s1++; else s.s2++;
-  var mx=Math.max(s.s1,s.s2),mn=Math.min(s.s1,s.s2);
-  if (s.s1===deuceAt&&s.s2===deuceAt) { saveMatch(m); renderLive(); showOverlay('DEUCE!',m.team1+' vs '+m.team2,[{label:'Continue',fn:closeOverlay}],false); return; }
-  if (mx>deuceAt&&mn>=deuceAt) {
-    if (mx-mn>=2) { endSet(m); return; }
-    saveMatch(m); renderLive(); showOverlay('Advantage: '+(s.s1>s.s2?m.team1:m.team2).split(' ')[0],'Deuce in progress',[{label:'Continue',fn:closeOverlay}],false); return;
+  if(player===1) s.s1++; else s.s2++;
+  var mx=Math.max(s.s1,s.s2), mn=Math.min(s.s1,s.s2);
+  if(s.s1===deuceAt&&s.s2===deuceAt){saveMatch(m);renderLive();showOverlay('DEUCE!',m.team1+' vs '+m.team2,[{label:'Continue',fn:closeOverlay}],false);return;}
+  if(mx>deuceAt&&mn>=deuceAt){
+    if(mx-mn>=2){endSet(m);return;}
+    saveMatch(m);renderLive();showOverlay('Advantage: '+(s.s1>s.s2?m.team1:m.team2).split(' ')[0],'Deuce in progress',[{label:'Continue',fn:closeOverlay}],false);return;
   }
-  if (s.s1>=winScore||s.s2>=winScore) { endSet(m); return; }
-  saveMatch(m); renderLive();
+  if(s.s1>=winScore||s.s2>=winScore){endSet(m);return;}
+  saveMatch(m);renderLive();
 }
 
-function endSet(m) {
-  var s=m.currentSet,w=s.s1>s.s2?1:2;
+function endSet(m){
+  var s=m.currentSet, w=s.s1>s.s2?1:2;
   m.sets.push({s1:s.s1,s2:s.s2,winner:w}); m.setWins[w-1]++; m.currentSet={s1:0,s2:0,history:[]};
-  if (m.setWins[0]===2||m.setWins[1]===2) {
+  if(m.setWins[0]===2||m.setWins[1]===2){
     m.done=true; m.winner=m.setWins[0]===2?1:2; saveMatch(m); renderLive();
     showOverlay('🏆 '+(m.winner===1?m.team1:m.team2).split(' ')[0]+' Wins!','Sets: '+m.setWins[0]+'-'+m.setWins[1],
-      [{label:'🔒 Lock Match',fn:lockMatch},{label:'Keep Editing',fn:closeOverlay}],true); return;
+      [{label:'🔒 Lock Match',fn:lockMatch},{label:'Keep Editing',fn:closeOverlay}],true);
+    return;
   }
-  saveMatch(m); renderLive(); showOverlay('Set Won!',(s.s1>s.s2?m.team1:m.team2).split(' ')[0]+' wins the set',[{label:'Next Set',fn:closeOverlay}],false);
+  saveMatch(m);renderLive();showOverlay('Set Won!',(s.s1>s.s2?m.team1:m.team2).split(' ')[0]+' wins the set',[{label:'Next Set',fn:closeOverlay}],false);
 }
 
-function undoPoint() {
-  var m=currentMatch; if (!m||!m.currentSet.history.length) return;
+function undoPoint(){
+  var m=currentMatch; if(!m||!m.currentSet.history.length) return;
   var prev=m.currentSet.history.pop(); m.currentSet.s1=prev.s1; m.currentSet.s2=prev.s2;
   saveMatch(m); renderLive();
 }
-
-function lockMatch() {
-  closeOverlay(); var m=currentMatch; if (!m) return;
+function lockMatch(){
+  closeOverlay(); var m=currentMatch; if(!m) return;
   m.locked=true; saveMatch(m); currentMatch=null;
   showScoreSubview(scoreMode==='doubles'?'doubles':'singles');
 }
-
-function exitMatch() {
-  if (currentMatch&&currentMatch.done) { lockMatch(); return; }
-  if (confirm('Exit without saving?')) { currentMatch=null; showScoreSubview(scoreMode==='doubles'?'doubles':'singles'); }
+function exitMatch(){
+  if(currentMatch&&currentMatch.done){lockMatch();return;}
+  if(confirm('Exit without saving?')){currentMatch=null;showScoreSubview(scoreMode==='doubles'?'doubles':'singles');}
 }
 
-function showOverlay(title,sub,actions,isWinner) {
+function showOverlay(title,sub,actions,isWinner){
   document.getElementById('overlay-title').textContent=title;
   document.getElementById('overlay-sub').textContent=sub;
   document.getElementById('overlay-box').className='overlay-box'+(isWinner?' winner-box':'');
   var el=document.getElementById('overlay-btns'); el.innerHTML='';
-  actions.forEach(function(a){ var b=document.createElement('button'); b.className='btn btn-primary'; b.textContent=a.label; b.addEventListener('click',a.fn); el.appendChild(b); });
+  actions.forEach(function(a){var b=document.createElement('button');b.className='btn btn-primary';b.textContent=a.label;b.addEventListener('click',a.fn);el.appendChild(b);});
   document.getElementById('overlay').style.display='flex';
 }
-function closeOverlay() { document.getElementById('overlay').style.display='none'; if(currentMatch) renderLive(); }
+function closeOverlay(){document.getElementById('overlay').style.display='none';if(currentMatch)renderLive();}
 
-// PIN
-document.getElementById('pin-cancel').addEventListener('click',function(){ document.getElementById('pin-modal').style.display='none'; pendingEditMatchId=null; document.getElementById('pin-input').value=''; document.getElementById('pin-err').textContent=''; });
-document.getElementById('pin-confirm').addEventListener('click',function(){
-  if (document.getElementById('pin-input').value!==ADMIN_PIN) { document.getElementById('pin-err').textContent='Incorrect PIN.'; document.getElementById('pin-input').value=''; return; }
-  document.getElementById('pin-modal').style.display='none'; document.getElementById('pin-input').value=''; document.getElementById('pin-err').textContent='';
-  doAdminEdit(pendingEditMatchId); pendingEditMatchId=null;
+// ---- PIN MODAL ----
+document.getElementById('pin-cancel').addEventListener('click',function(){
+  document.getElementById('pin-modal').style.display='none';
+  pendingEditMatchId=null; pendingAction=null;
+  document.getElementById('pin-input').value=''; document.getElementById('pin-err').textContent='';
 });
-document.getElementById('pin-input').addEventListener('keydown',function(e){ if(e.key==='Enter') document.getElementById('pin-confirm').click(); });
-function adminEdit(matchId) { pendingEditMatchId=matchId; document.getElementById('pin-err').textContent=''; document.getElementById('pin-input').value=''; document.getElementById('pin-modal').querySelector('p').textContent='Enter PIN to edit this match'; document.getElementById('pin-modal').style.display='flex'; setTimeout(function(){ document.getElementById('pin-input').focus(); },100); }
+document.getElementById('pin-confirm').addEventListener('click',function(){
+  if(document.getElementById('pin-input').value!==ADMIN_PIN){
+    document.getElementById('pin-err').textContent='Incorrect PIN.';
+    document.getElementById('pin-input').value=''; return;
+  }
+  document.getElementById('pin-modal').style.display='none';
+  document.getElementById('pin-input').value=''; document.getElementById('pin-err').textContent='';
+  if(pendingAction==='reset'){
+    if(confirm('Delete ALL match data? This cannot be undone.')){
+      db.ref('matches').remove(); matches={}; currentMatch=null;
+      renderMatches(); renderHome(); alert('All data reset!');
+    }
+  } else if(pendingEditMatchId){
+    var m=matches[pendingEditMatchId]; if(!m) return;
+    m.locked=false;m.done=false;m.winner=null;m.setWins=[0,0];m.sets=[];m.currentSet={s1:0,s2:0,history:[]};
+    currentMatch=m; saveMatch(m); scoreMode=m.type==='doubles'?'doubles':'singles';
+    gotoPage('score'); showScoreSubview('live'); renderLive();
+  }
+  pendingEditMatchId=null; pendingAction=null;
+});
+document.getElementById('pin-input').addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('pin-confirm').click();});
 
-// Matches list
-[0,1,2,3,4].forEach(function(d){ document.getElementById('df-'+d).addEventListener('click',function(){ currentDayFilter=d; [0,1,2,3,4].forEach(function(x){ document.getElementById('df-'+x).classList.toggle('active',x===d); }); renderMatches(); }); });
-function renderMatches() {
+function showPinModal(msg){ document.getElementById('pin-modal-msg').textContent=msg; document.getElementById('pin-err').textContent=''; document.getElementById('pin-input').value=''; document.getElementById('pin-modal').style.display='flex'; setTimeout(function(){document.getElementById('pin-input').focus();},100); }
+function adminEdit(matchId){ pendingEditMatchId=matchId; pendingAction='edit'; showPinModal('Enter PIN to edit this match'); }
+
+document.getElementById('reset-btn').addEventListener('click',function(){ pendingAction='reset'; pendingEditMatchId=null; showPinModal('Enter PIN to reset all data'); });
+
+// ---- MATCHES ----
+[0,1,2,3,4].forEach(function(d){document.getElementById('df-'+d).addEventListener('click',function(){currentDayFilter=d;[0,1,2,3,4].forEach(function(x){document.getElementById('df-'+x).classList.toggle('active',x===d);});renderMatches();});});
+function renderMatches(){
   var el=document.getElementById('matches-list'); el.innerHTML='';
-  var list=Object.values(matches).filter(function(m){ return currentDayFilter===0||m.day===currentDayFilter; });
-  list.sort(function(a,b){ return b.id-a.id; });
-  if (!list.length) { el.innerHTML='<div class="empty">No matches found</div>'; return; }
-  list.forEach(function(m) {
+  var list=Object.values(matches).filter(function(m){return currentDayFilter===0||m.day===currentDayFilter;});
+  list.sort(function(a,b){return b.id-a.id;});
+  if(!list.length){el.innerHTML='<div class="empty">No matches found</div>';return;}
+  list.forEach(function(m){
     var winner=m.done?(m.winner===1?m.team1:m.team2):null;
-    var scores=m.sets.map(function(s){ return s.s1+'-'+s.s2; }).join(', ');
+    var scores=m.sets.map(function(s){return s.s1+'-'+s.s2;}).join(', ');
+    var stageLabel=m.stage==='group'?'Group '+(m.group||''):m.stage==='league'?'League':m.stage==='semifinal'?'SF':m.stage==='knockout'?'KO':'Final';
     var item=document.createElement('div'); item.className='match-item';
     item.innerHTML='<div class="match-teams">'+m.team1+'<span class="vs">vs</span>'+m.team2+'</div>'+
-      '<div class="match-meta"><span class="dot '+(m.done?'dot-done':m.sets.length?'dot-live':'dot-up')+'"></span>'+(m.type==='singles'?'Singles · Group '+m.group:'Doubles · League')+' · Day '+m.day+'</div>'+
+      '<div class="match-meta"><span class="dot '+(m.done?'dot-done':m.sets.length?'dot-live':'dot-up')+'"></span>'+(m.type==='singles'?'Singles':'Doubles')+' · '+stageLabel+' · Day '+m.day+'</div>'+
       (m.done?'<div class="match-result">🏆 '+winner+' won · '+scores+'</div>':'<div class="match-result ongoing">In progress · '+(scores||'Not started')+'</div>');
-    if (m.locked) { var btn=document.createElement('button'); btn.textContent='✏️ Edit (Admin)'; btn.className='btn btn-secondary btn-sm'; btn.style.marginTop='8px'; (function(id){ btn.addEventListener('click',function(){ adminEdit(id); }); })(m.id); item.appendChild(btn); }
+    if(m.locked){var btn=document.createElement('button');btn.textContent='✏️ Edit (Admin)';btn.className='btn btn-secondary btn-sm';btn.style.marginTop='8px';(function(id){btn.addEventListener('click',function(){adminEdit(id);});})(m.id);item.appendChild(btn);}
     el.appendChild(item);
   });
 }
 
-// Standings
-['singlesA','singlesB','doubles'].forEach(function(t){ document.getElementById('tab-'+t).addEventListener('click',function(){ showStandingsTab(t); }); });
-function showStandingsTab(tab) {
+// ---- STANDINGS ----
+['singlesA','singlesB','doubles'].forEach(function(t){document.getElementById('tab-'+t).addEventListener('click',function(){showStandingsTab(t);});});
+function showStandingsTab(tab){
   currentStandingsTab=tab;
-  ['singlesA','singlesB','doubles'].forEach(function(t){ document.getElementById('tab-'+t).classList.toggle('active',t===tab); });
-  var type=tab==='doubles'?'doubles':'singles', group=tab==='singlesA'?'A':tab==='singlesB'?'B':null;
+  ['singlesA','singlesB','doubles'].forEach(function(t){document.getElementById('tab-'+t).classList.toggle('active',t===tab);});
+  var type=tab==='doubles'?'doubles':'singles';
+  var group=tab==='singlesA'?'A':tab==='singlesB'?'B':null;
   var title=tab==='singlesA'?'Singles — Group A':tab==='singlesB'?'Singles — Group B':'Doubles — League';
-  var relevant=Object.values(matches).filter(function(m){ return m.done&&m.type===type&&(type==='doubles'||m.group===group); });
-  var players={};
-  relevant.forEach(function(m){
-    [m.team1,m.team2].forEach(function(t){ if(!players[t]) players[t]={name:t,mp:0,mw:0,ml:0,pts:0,sw:0,sl:0,pf:0,pa:0}; });
-    players[m.team1].mp++; players[m.team2].mp++;
-    var w=m.winner===1?m.team1:m.team2,l=m.winner===1?m.team2:m.team1;
-    players[w].mw++; players[w].pts+=3; players[l].ml++;
-    m.sets.forEach(function(s){ players[m.team1].pf+=s.s1; players[m.team1].pa+=s.s2; players[m.team2].pf+=s.s2; players[m.team2].pa+=s.s1; if(s.winner===1){players[m.team1].sw++;players[m.team2].sl++;}else{players[m.team2].sw++;players[m.team1].sl++;} });
-  });
-  var rows=Object.values(players).sort(function(a,b){ if(b.pts!==a.pts) return b.pts-a.pts; var sd=(b.sw-b.sl)-(a.sw-a.sl); if(sd!==0) return sd; return (b.pf-b.pa)-(a.pf-a.pa); });
+  var rows=getStandings(type,group);
   var el=document.getElementById('standings-content');
-  if (!rows.length) { el.innerHTML='<div class="empty">No completed matches yet</div>'; return; }
-  el.innerHTML='<div class="card-title">'+title+'</div><table class="pt-table"><tr><th>Team</th><th>MP</th><th>W</th><th>L</th><th>SW</th><th>SL</th><th>SD</th><th>PF</th><th>PA</th><th>Pts</th></tr>'+
-    rows.map(function(p,i){ return '<tr><td><span class="rank-badge '+(i===0?'r1':i===1?'r2':i===2?'r3':'')+'">'+(i+1)+'</span>'+p.name+'</td><td>'+p.mp+'</td><td>'+p.mw+'</td><td>'+p.ml+'</td><td>'+p.sw+'</td><td>'+p.sl+'</td><td>'+(p.sw-p.sl)+'</td><td>'+p.pf+'</td><td>'+p.pa+'</td><td><strong>'+p.pts+'</strong></td></tr>'; }).join('')+'</table>';
-}
 
-// Reset
-document.getElementById('reset-btn').addEventListener('click', function() {
-  var pin = document.getElementById('pin-input');
-  pendingEditMatchId = '__reset__';
-  document.getElementById('pin-err').textContent = '';
-  document.getElementById('pin-input').value = '';
-  document.getElementById('pin-modal').querySelector('p').textContent = 'Enter PIN to reset all match data';
-  document.getElementById('pin-modal').style.display = 'flex';
-  setTimeout(function(){ document.getElementById('pin-input').focus(); }, 100);
-});
+  // Build standings table
+  var html='<div class="card-title">'+title+'</div>';
+  if(!rows.length){el.innerHTML=html+'<div class="empty">No completed matches yet</div>';return;}
+  html+='<table class="pt-table"><tr><th>Team</th><th>MP</th><th>W</th><th>L</th><th>SW</th><th>SL</th><th>SD</th><th>PF</th><th>PA</th><th>Pts</th></tr>'+
+    rows.map(function(p,i){return '<tr><td><span class="rank-badge '+(i===0?'r1':i===1?'r2':i===2?'r3':'')+'">'+(i+1)+'</span>'+p.name+'</td><td>'+p.mp+'</td><td>'+p.mw+'</td><td>'+p.ml+'</td><td>'+p.sw+'</td><td>'+p.sl+'</td><td>'+(p.sw-p.sl)+'</td><td>'+p.pf+'</td><td>'+p.pa+'</td><td><strong>'+p.pts+'</strong></td></tr>';}).join('')+'</table>';
 
-function doAdminEdit(matchId) {
-  if (matchId === '__reset__') {
-    document.getElementById('pin-modal').querySelector('p').textContent = 'Enter PIN to edit this match';
-    if (!confirm('Are you sure you want to delete ALL match data? This cannot be undone.')) return;
-    db.ref('matches').remove();
-    matches = {};
-    currentMatch = null;
-    renderMatches();
-    renderHome();
-    alert('All data has been reset!');
-    return;
+  // Knockouts section for doubles
+  if(tab==='doubles'){
+    html+=buildKOSection('doubles', rows);
   }
-  var m = matches[matchId]; if (!m) return;
-  m.locked=false; m.done=false; m.winner=null; m.setWins=[0,0]; m.sets=[]; m.currentSet={s1:0,s2:0,history:[]};
-  currentMatch=m; saveMatch(m); scoreMode=m.type==='doubles'?'doubles':'singles';
-  gotoPage('score'); showScoreSubview('live'); renderLive();
+
+  // Singles knockouts — show on both group tabs but combined
+  if(tab==='singlesA'||tab==='singlesB'){
+    var rowsA=getStandings('singles','A'), rowsB=getStandings('singles','B');
+    html+=buildSinglesKOSection(rowsA, rowsB);
+  }
+
+  el.innerHTML=html;
 }
 
-// Home
-function renderHome() {
-  var total=Object.values(matches).filter(function(m){ return m.done; }).length;
-  var live=Object.values(matches).filter(function(m){ return !m.done&&m.sets&&m.sets.length>0; }).length;
-  var todayM=Object.values(matches).filter(function(m){ return m.day===singlesDay; });
+function buildKOSection(type, standings){
+  var html='<div style="border-top:1px solid #1e3a5f;margin-top:12px;padding-top:4px"><div class="card-title" style="padding-top:8px">Knockouts</div>';
+  var sf1w=getKOWinner(KO_FIDS.dSF1), sf2w=getKOWinner(KO_FIDS.dSF2), fw=getKOWinner(KO_FIDS.dFinal);
+  var s=standings;
+  html+='<div style="font-size:12px;color:#7a9cc4;margin-bottom:6px">Semi Finals</div>';
+  html+=koRow('SF1', s[0]?s[0].name:'TBD', s[3]?s[3].name:'TBD', sf1w);
+  html+=koRow('SF2', s[1]?s[1].name:'TBD', s[2]?s[2].name:'TBD', sf2w);
+  html+='<div style="font-size:12px;color:#7a9cc4;margin-top:8px;margin-bottom:6px">Final</div>';
+  html+=koRow('Final', sf1w||'TBD', sf2w||'TBD', fw);
+  html+='</div>';
+  return html;
+}
+
+function buildSinglesKOSection(rowsA, rowsB){
+  var html='<div style="border-top:1px solid #1e3a5f;margin-top:12px;padding-top:4px"><div class="card-title" style="padding-top:8px">Singles Knockouts</div>';
+  var sf1w=getKOWinner(KO_FIDS.sSF1), sf2w=getKOWinner(KO_FIDS.sSF2), fw=getKOWinner(KO_FIDS.sFinal);
+  // SF1: GroupA 1st vs GroupB 2nd
+  var sf1t1=rowsA[0]?rowsA[0].name:'TBD (A 1st)', sf1t2=rowsB[1]?rowsB[1].name:'TBD (B 2nd)';
+  // SF2: GroupA 2nd vs GroupB 1st
+  var sf2t1=rowsA[1]?rowsA[1].name:'TBD (A 2nd)', sf2t2=rowsB[0]?rowsB[0].name:'TBD (B 1st)';
+  html+='<div style="font-size:12px;color:#7a9cc4;margin-bottom:6px">Semi Finals</div>';
+  html+=koRow('SF1', sf1t1, sf1t2, sf1w);
+  html+=koRow('SF2', sf2t1, sf2t2, sf2w);
+  html+='<div style="font-size:12px;color:#7a9cc4;margin-top:8px;margin-bottom:6px">Final</div>';
+  html+=koRow('Final', sf1w||'TBD', sf2w||'TBD', fw);
+  html+='</div>';
+  return html;
+}
+
+function koRow(label, t1, t2, winner){
+  return '<div style="padding:8px 0;border-bottom:1px solid #0f1b2d;font-size:13px">'+
+    '<span style="color:#ce93d8;font-size:10px;font-weight:700;margin-right:6px">'+label+'</span>'+
+    '<span style="font-weight:600">'+t1+'</span><span class="vs">vs</span><span style="font-weight:600">'+t2+'</span>'+
+    (winner?'<div style="font-size:12px;color:#66bb6a;margin-top:2px">🏆 '+winner+' won</div>':'')+
+    '</div>';
+}
+
+// ---- HOME ----
+function renderHome(){
+  var total=Object.values(matches).filter(function(m){return m.done;}).length;
+  var live=Object.values(matches).filter(function(m){return !m.done&&m.sets&&m.sets.length>0;}).length;
+  var todayM=Object.values(matches).filter(function(m){return m.day===singlesDay;});
   document.getElementById('header-day').textContent='Day '+singlesDay+' of 4';
   document.getElementById('home-content').innerHTML=
     '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:12px">'+
@@ -566,10 +727,12 @@ function renderHome() {
     '<div class="card" style="margin:0;text-align:center"><div style="font-size:22px;font-weight:800;color:#ff7043">'+live+'</div><div style="font-size:11px;color:#7a9cc4;margin-top:2px">In Progress</div></div>'+
     '<div class="card" style="margin:0;text-align:center"><div style="font-size:22px;font-weight:800;color:#ffd54f">'+singlesDay+'</div><div style="font-size:11px;color:#7a9cc4;margin-top:2px">Today (Day)</div></div>'+
     '</div><div class="card"><div class="card-title">Matches Today (Day '+singlesDay+')</div>'+
-    (todayM.length===0?'<div class="empty">No matches today yet</div>':todayM.map(function(m){
+    (todayM.length===0?'<div class="empty">No matches today yet</div>':
+    todayM.map(function(m){
       var winner=m.done?(m.winner===1?m.team1:m.team2):null;
+      var sl=m.stage==='group'?'Group '+(m.group||''):m.stage==='league'?'League':m.stage==='semifinal'?'SF':'Final';
       return '<div class="match-item"><div class="match-teams">'+m.team1+'<span class="vs">vs</span>'+m.team2+'</div>'+
-        '<div class="match-meta"><span class="dot '+(m.done?'dot-done':'dot-live')+'"></span>'+(m.type==='singles'?'Group '+m.group:'Doubles')+'</div>'+
+        '<div class="match-meta"><span class="dot '+(m.done?'dot-done':'dot-live')+'"></span>'+(m.type==='singles'?'Singles':'Doubles')+' · '+sl+'</div>'+
         (m.done?'<div class="match-result">🏆 '+winner+' won</div>':'<div class="match-result ongoing">In progress</div>')+'</div>';
     }).join(''))+
     '</div>';
