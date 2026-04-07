@@ -326,7 +326,6 @@ function getKOWinner(fid){
   var m=Object.values(matches).find(function(x){return x.fid===fid&&x.done&&x.locked;});
   return m?(m.winner===1?m.team1:m.team2):null;
 }
-
 // ---- SCORE SUBVIEWS ----
 function showScoreSubview(v){
   document.getElementById('score-singles').style.display=v==='singles'?'':'none';
