@@ -63,9 +63,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .pt-table td:first-child{text-align:left;font-weight:600;font-size:12px}
 .pt-table tr:last-child td{border-bottom:none}
 .rank-badge{display:inline-block;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:700;line-height:20px;text-align:center;margin-right:4px}
-.r1{background:#f57c00;color:#fff}
-.r2{background:#455a64;color:#fff}
-.r3{background:#4a2900;color:#ff8f00}
+.r1{background:#f57c00;color:#fff}.r2{background:#455a64;color:#fff}.r3{background:#4a2900;color:#ff8f00}
 .match-item{padding:12px;border-bottom:1px solid #1e3a5f}
 .match-item:last-child{border-bottom:none}
 .match-teams{font-size:14px;font-weight:600;color:#e8edf5}
@@ -74,11 +72,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .match-result{font-size:13px;font-weight:700;color:#66bb6a;margin-top:3px}
 .match-result.ongoing{color:#ffd54f}
 .dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:5px;vertical-align:middle}
-.dot-done{background:#66bb6a}
-.dot-live{background:#ff7043}
-.dot-up{background:#455a64}
-.page{display:none}
-.page.active{display:block}
+.dot-done{background:#66bb6a}.dot-live{background:#ff7043}.dot-up{background:#455a64}
+.page{display:none}.page.active{display:block}
 .group-tab-row{display:flex;gap:6px;padding:0 12px;margin-top:12px}
 .group-tab{padding:7px 16px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;background:#1e3a5f;color:#7a9cc4;border:none}
 .group-tab.active{background:#1976d2;color:#fff}
@@ -95,9 +90,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .fixture-teams{font-size:13px;font-weight:600;color:#e8edf5;flex:1}
 .fixture-day{font-size:11px;color:#7a9cc4;margin-top:2px}
 .fix-status{font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap}
-.fix-done{background:#1b5e20;color:#a5d6a7}
-.fix-live{background:#4a2000;color:#ff8f00}
-.fix-pending{background:#1a2a40;color:#7a9cc4}
+.fix-done{background:#1b5e20;color:#a5d6a7}.fix-live{background:#4a2000;color:#ff8f00}.fix-pending{background:#1a2a40;color:#7a9cc4}
 .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:300;padding:20px}
 .modal{background:#162236;border-radius:16px;padding:24px;width:100%;max-width:300px;border:1px solid #2a5080}
 .modal h3{font-size:16px;font-weight:700;color:#e8edf5;margin-bottom:6px}
@@ -105,8 +98,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .modal input{width:100%;padding:12px;background:#0f1b2d;border:1px solid #2a5080;border-radius:8px;color:#e8edf5;font-size:20px;letter-spacing:6px;text-align:center;outline:none;margin-bottom:12px}
 .modal-btns{display:flex;gap:8px}
 .modal-btns button{flex:1;padding:10px;border-radius:8px;border:none;font-size:14px;font-weight:600;cursor:pointer}
-.modal-cancel{background:#1e3a5f;color:#90caf9}
-.modal-confirm{background:#1976d2;color:#fff}
+.modal-cancel{background:#1e3a5f;color:#90caf9}.modal-confirm{background:#1976d2;color:#fff}
 .modal-err{font-size:12px;color:#ef5350;margin-top:-6px;margin-bottom:8px;min-height:18px}
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:200;padding:20px}
 .overlay-box{background:#162236;border-radius:16px;padding:28px 24px;text-align:center;max-width:320px;width:100%;border:2px solid #f57c00}
@@ -121,10 +113,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 <body>
 <div id="conn-bar" class="conn-bar conn-wait"><span class="spinner"></span>Connecting...</div>
 <div class="app">
-  <div class="header">
-    <h1>🏓 TT Tournament 2026</h1>
-    <p id="header-day">Day 1 of 4</p>
-  </div>
+  <div class="header"><h1>🏓 TT Tournament 2026</h1><p id="header-day">Day 1 of 4</p></div>
   <div class="nav">
     <button class="nav-btn active" id="nav-home">Home</button>
     <button class="nav-btn" id="nav-score">Scoring</button>
@@ -132,25 +121,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <button class="nav-btn" id="nav-matches">Matches</button>
   </div>
 
-  <!-- HOME -->
-  <div id="page-home" class="page active">
-    <div id="home-content"><div class="empty">Loading...</div></div>
-  </div>
+  <div id="page-home" class="page active"><div id="home-content"><div class="empty">Loading...</div></div></div>
 
-  <!-- SCORING — multiple sub-pages -->
   <div id="page-score" class="page">
-
-    <!-- Score Home: pick Singles or Doubles -->
-    <div id="score-home" class="card">
-      <div class="card-title">New Match</div>
+    <div class="card">
+      <div class="card-title">Match Type</div>
       <div class="toggle-group">
         <button class="toggle-btn active" id="score-tab-singles">Singles</button>
         <button class="toggle-btn" id="score-tab-doubles">Doubles</button>
       </div>
     </div>
-
-    <!-- Singles Setup -->
-    <div id="score-singles" style="display:none">
+    <div id="score-singles">
       <div class="card" style="margin-top:10px">
         <div class="card-title">Singles Match</div>
         <div class="form-row">
@@ -174,11 +155,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
           </div>
         </div>
         <button class="btn btn-primary btn-full" id="start-singles-btn">Start Match</button>
-        <button class="btn btn-secondary btn-full" id="back-from-singles" style="margin-top:6px">← Back</button>
       </div>
     </div>
-
-    <!-- Doubles Fixture List -->
     <div id="score-doubles" style="display:none">
       <div class="card" style="margin-top:10px">
         <div class="card-title">Doubles — Pick Fixture</div>
@@ -193,17 +171,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         </div>
       </div>
       <div class="card" style="margin-top:10px" id="fixtures-list"></div>
-      <div style="margin:10px 12px 0">
-        <button class="btn btn-secondary btn-full" id="back-from-doubles">← Back</button>
-      </div>
     </div>
-
-    <!-- Live Scoreboard -->
     <div id="score-live" style="display:none"></div>
-
   </div>
 
-  <!-- STANDINGS -->
   <div id="page-table" class="page">
     <div class="group-tab-row">
       <button class="group-tab active" id="tab-singlesA">Singles A</button>
@@ -213,7 +184,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div id="standings-content" class="card" style="margin-top:10px"></div>
   </div>
 
-  <!-- MATCHES -->
   <div id="page-matches" class="page">
     <div class="day-row">
       <button class="day-btn active" id="df-0">All</button>
@@ -226,11 +196,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   </div>
 </div>
 
-<!-- PIN Modal -->
 <div class="modal-bg" id="pin-modal" style="display:none">
   <div class="modal">
-    <h3>Admin Access</h3>
-    <p>Enter PIN to edit this match</p>
+    <h3>Admin Access</h3><p>Enter PIN to edit this match</p>
     <input type="password" id="pin-input" maxlength="10" placeholder="••••">
     <div class="modal-err" id="pin-err"></div>
     <div class="modal-btns">
@@ -240,7 +208,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   </div>
 </div>
 
-<!-- Deuce / Winner Overlay -->
 <div class="overlay" id="overlay" style="display:none">
   <div class="overlay-box" id="overlay-box">
     <div class="overlay-title" id="overlay-title"></div>
@@ -249,11 +216,28 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   </div>
 </div>
 
-<script type="module">
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-import { getDatabase, ref, set, onValue } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js';
+<!-- Firebase SDKs loaded as regular scripts (no module) -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script>
+var ADMIN_PIN = '2725';
+var WIN_AT = {singles:11,doubles:21};
+var DEUCE_AT = {singles:10,doubles:20};
+var DOUBLES_FIXTURES = [
+  {fid:'d01',team1:'Abhijit & Rishav',team2:'Saikat & HN Chatterjee'},
+  {fid:'d02',team1:'Abhijit & Rishav',team2:'Raj & Nikunj'},
+  {fid:'d03',team1:'Abhijit & Rishav',team2:'Rahul & Aarav'},
+  {fid:'d04',team1:'Abhijit & Rishav',team2:'Yogesh & Subrata'},
+  {fid:'d05',team1:'Saikat & HN Chatterjee',team2:'Raj & Nikunj'},
+  {fid:'d06',team1:'Saikat & HN Chatterjee',team2:'Rahul & Aarav'},
+  {fid:'d07',team1:'Saikat & HN Chatterjee',team2:'Yogesh & Subrata'},
+  {fid:'d08',team1:'Raj & Nikunj',team2:'Rahul & Aarav'},
+  {fid:'d09',team1:'Raj & Nikunj',team2:'Yogesh & Subrata'},
+  {fid:'d10',team1:'Rahul & Aarav',team2:'Yogesh & Subrata'},
+];
 
-const firebaseConfig = {
+// Firebase init
+firebase.initializeApp({
   apiKey: "AIzaSyBE5M0wLDaiY5zMk8fioZzOMk2tDzZO0gg",
   authDomain: "tt-tournament-2026.firebaseapp.com",
   databaseURL: "https://tt-tournament-2026-default-rtdb.asia-southeast1.firebasedatabase.app",
@@ -261,27 +245,8 @@ const firebaseConfig = {
   storageBucket: "tt-tournament-2026.firebasestorage.app",
   messagingSenderId: "953586518356",
   appId: "1:953586518356:web:05b88de06538a2546ca0c1"
-};
-
-const fbApp = initializeApp(firebaseConfig);
-const db = getDatabase(fbApp);
-
-const ADMIN_PIN = '2725';
-const WIN_AT = { singles: 11, doubles: 21 };
-const DEUCE_AT = { singles: 10, doubles: 20 };
-
-const DOUBLES_FIXTURES = [
-  { fid:'d01', team1:'Abhijit & Rishav',        team2:'Saikat & HN Chatterjee' },
-  { fid:'d02', team1:'Abhijit & Rishav',        team2:'Raj & Nikunj' },
-  { fid:'d03', team1:'Abhijit & Rishav',        team2:'Rahul & Aarav' },
-  { fid:'d04', team1:'Abhijit & Rishav',        team2:'Yogesh & Subrata' },
-  { fid:'d05', team1:'Saikat & HN Chatterjee', team2:'Raj & Nikunj' },
-  { fid:'d06', team1:'Saikat & HN Chatterjee', team2:'Rahul & Aarav' },
-  { fid:'d07', team1:'Saikat & HN Chatterjee', team2:'Yogesh & Subrata' },
-  { fid:'d08', team1:'Raj & Nikunj',            team2:'Rahul & Aarav' },
-  { fid:'d09', team1:'Raj & Nikunj',            team2:'Yogesh & Subrata' },
-  { fid:'d10', team1:'Rahul & Aarav',           team2:'Yogesh & Subrata' },
-];
+});
+var db = firebase.database();
 
 var matches = {};
 var currentMatch = null;
@@ -291,453 +256,290 @@ var pendingEditMatchId = null;
 var singlesGroup = 'A';
 var singlesDay = 1;
 var doublesDay = 1;
+var scoreMode = 'singles';
 
-// ---- SCORE SUB-VIEWS ----
-// 'home' | 'singles' | 'doubles' | 'live'
-function showScoreSubview(v) {
-  document.getElementById('score-home').style.display    = 'none';
-  document.getElementById('score-singles').style.display = v === 'singles' ? '' : 'none';
-  document.getElementById('score-doubles').style.display = v === 'doubles' ? '' : 'none';
-  document.getElementById('score-live').style.display    = v === 'live'    ? '' : 'none';
-  if (v === 'doubles') renderFixtures();
-}
+function saveMatch(m) { db.ref('matches/'+m.id).set(m); }
 
-// Default state when entering scoring tab
-function initScoreTab() {
-  document.getElementById('score-tab-singles').classList.add('active');
-  document.getElementById('score-tab-doubles').classList.remove('active');
-  showScoreSubview('singles');
-}
-
-// ---- NAV ----
-var PAGES = ['home','score','table','matches'];
-PAGES.forEach(function(id) {
-  document.getElementById('nav-' + id).addEventListener('click', function() { gotoPage(id); });
+// Connection bar
+db.ref('.info/connected').on('value', function(snap) {
+  var bar = document.getElementById('conn-bar');
+  if (snap.val()) { bar.className='conn-bar conn-ok'; bar.textContent='🟢 Live — all devices in sync'; }
+  else { bar.className='conn-bar conn-err'; bar.textContent='🔴 Offline — reconnecting...'; }
 });
 
-function gotoPage(p) {
-  PAGES.forEach(function(id) {
-    document.getElementById('page-' + id).classList.remove('active');
-    document.getElementById('nav-' + id).classList.remove('active');
-  });
-  document.getElementById('page-' + p).classList.add('active');
-  document.getElementById('nav-' + p).classList.add('active');
-  if (p === 'home')    renderHome();
-  if (p === 'score')   initScoreTab();
-  if (p === 'table')   showStandingsTab(currentStandingsTab);
-  if (p === 'matches') renderMatches();
+// Live sync
+db.ref('matches').on('value', function(snap) {
+  matches = snap.val() || {};
+  var ap = document.querySelector('.page.active');
+  if (ap) {
+    var pid = ap.id.replace('page-','');
+    if (pid==='home') renderHome();
+    if (pid==='table') showStandingsTab(currentStandingsTab);
+    if (pid==='matches') renderMatches();
+    if (pid==='score' && document.getElementById('score-doubles').style.display!=='none') renderFixtures();
+  }
+  if (currentMatch && currentMatch.id && matches[currentMatch.id]) {
+    currentMatch = matches[currentMatch.id];
+    if (document.getElementById('score-live').style.display!=='none') renderLive();
+  }
+});
+
+// Show/hide score subviews
+function showScoreSubview(v) {
+  document.getElementById('score-singles').style.display = v==='singles' ? '' : 'none';
+  document.getElementById('score-doubles').style.display = v==='doubles' ? '' : 'none';
+  document.getElementById('score-live').style.display    = v==='live'    ? '' : 'none';
+  if (v==='doubles') renderFixtures();
 }
 
-// ---- SCORE TAB TOGGLES ----
+// NAV
+['home','score','table','matches'].forEach(function(id) {
+  document.getElementById('nav-'+id).addEventListener('click', function() { gotoPage(id); });
+});
+function gotoPage(p) {
+  ['home','score','table','matches'].forEach(function(id) {
+    document.getElementById('page-'+id).classList.remove('active');
+    document.getElementById('nav-'+id).classList.remove('active');
+  });
+  document.getElementById('page-'+p).classList.add('active');
+  document.getElementById('nav-'+p).classList.add('active');
+  if (p==='home') renderHome();
+  if (p==='score') { scoreMode='singles'; document.getElementById('score-tab-singles').classList.add('active'); document.getElementById('score-tab-doubles').classList.remove('active'); showScoreSubview('singles'); }
+  if (p==='table') showStandingsTab(currentStandingsTab);
+  if (p==='matches') renderMatches();
+}
+
+// Score type toggle
 document.getElementById('score-tab-singles').addEventListener('click', function() {
+  scoreMode='singles';
   document.getElementById('score-tab-singles').classList.add('active');
   document.getElementById('score-tab-doubles').classList.remove('active');
   showScoreSubview('singles');
 });
 document.getElementById('score-tab-doubles').addEventListener('click', function() {
+  scoreMode='doubles';
   document.getElementById('score-tab-doubles').classList.add('active');
   document.getElementById('score-tab-singles').classList.remove('active');
   showScoreSubview('doubles');
 });
 
-// Auto-show singles on score tab load (so buttons are immediately usable)
-showScoreSubview('singles');
-document.getElementById('back-from-singles').addEventListener('click', function() { showScoreSubview('home'); });
-document.getElementById('back-from-doubles').addEventListener('click', function() { showScoreSubview('home'); });
-
-// ---- SINGLES SETUP ----
-document.getElementById('grp-a').addEventListener('click', function() {
-  singlesGroup = 'A';
-  document.getElementById('grp-a').classList.add('active');
-  document.getElementById('grp-b').classList.remove('active');
-});
-document.getElementById('grp-b').addEventListener('click', function() {
-  singlesGroup = 'B';
-  document.getElementById('grp-b').classList.add('active');
-  document.getElementById('grp-a').classList.remove('active');
-});
+// Singles setup
+document.getElementById('grp-a').addEventListener('click', function() { singlesGroup='A'; document.getElementById('grp-a').classList.add('active'); document.getElementById('grp-b').classList.remove('active'); });
+document.getElementById('grp-b').addEventListener('click', function() { singlesGroup='B'; document.getElementById('grp-b').classList.add('active'); document.getElementById('grp-a').classList.remove('active'); });
 [1,2,3,4].forEach(function(d) {
-  document.getElementById('sday-' + d).addEventListener('click', function() {
-    singlesDay = d;
-    [1,2,3,4].forEach(function(x) { document.getElementById('sday-' + x).classList.toggle('active', x === d); });
+  document.getElementById('sday-'+d).addEventListener('click', function() {
+    singlesDay=d; [1,2,3,4].forEach(function(x){ document.getElementById('sday-'+x).classList.toggle('active',x===d); });
   });
 });
 document.getElementById('start-singles-btn').addEventListener('click', function() {
-  var t1 = (document.getElementById('p1').value || '').trim();
-  var t2 = (document.getElementById('p2').value || '').trim();
-  if (!t1 || !t2) { alert('Enter both player names.'); return; }
-  var m = {
-    id: Date.now(), type: 'singles', group: singlesGroup, day: singlesDay,
-    team1: t1, team2: t2, sets: [], currentSet: { s1:0, s2:0, history:[] },
-    setWins: [0,0], done: false, winner: null, locked: false
-  };
-  currentMatch = m;
-  saveMatch(m);
-  showScoreSubview('live');
-  renderLive();
+  var t1=(document.getElementById('p1').value||'').trim();
+  var t2=(document.getElementById('p2').value||'').trim();
+  if (!t1||!t2) { alert('Enter both player names.'); return; }
+  var m={id:Date.now(),type:'singles',group:singlesGroup,day:singlesDay,
+    team1:t1,team2:t2,sets:[],currentSet:{s1:0,s2:0,history:[]},setWins:[0,0],done:false,winner:null,locked:false};
+  currentMatch=m; saveMatch(m); showScoreSubview('live'); renderLive();
 });
 
-// ---- DOUBLES DAY ----
+// Doubles day
 [1,2,3,4].forEach(function(d) {
-  document.getElementById('dday-' + d).addEventListener('click', function() {
-    doublesDay = d;
-    [1,2,3,4].forEach(function(x) { document.getElementById('dday-' + x).classList.toggle('active', x === d); });
+  document.getElementById('dday-'+d).addEventListener('click', function() {
+    doublesDay=d; [1,2,3,4].forEach(function(x){ document.getElementById('dday-'+x).classList.toggle('active',x===d); });
   });
 });
 
-// ---- DOUBLES FIXTURES ----
 function renderFixtures() {
-  var el = document.getElementById('fixtures-list');
-  el.innerHTML = '<div class="card-title">Select a fixture</div>';
+  var el=document.getElementById('fixtures-list'); el.innerHTML='<div class="card-title">Select a fixture</div>';
   DOUBLES_FIXTURES.forEach(function(fix) {
-    var played = Object.values(matches).find(function(m) { return m.type === 'doubles' && m.fid === fix.fid; });
-    var item = document.createElement('div');
-    item.className = 'fixture-item';
-    var isDone    = played && played.locked;
-    var isLive    = played && !played.locked;
-    var isPending = !played;
-    var statusCls = isDone ? 'fix-done' : isLive ? 'fix-live' : 'fix-pending';
-    var statusTxt = isDone ? 'Done'      : isLive ? 'Live'     : 'Pending';
-    var infoDiv = document.createElement('div');
-    infoDiv.style.flex = '1';
-    infoDiv.innerHTML = '<div class="fixture-teams">' + fix.team1 + '<span class="vs">vs</span>' + fix.team2 + '</div>' +
-      (isDone ? '<div class="fixture-day">Day ' + played.day + ' · ' + (played.winner===1?played.team1:played.team2).split(' ')[0] + ' won</div>' : '');
-    var right = document.createElement('div');
-    right.style.display = 'flex'; right.style.alignItems = 'center'; right.style.gap = '8px';
-    var badge = document.createElement('span');
-    badge.className = 'fix-status ' + statusCls;
-    badge.textContent = statusTxt;
+    var played=Object.values(matches).find(function(m){ return m.type==='doubles'&&m.fid===fix.fid; });
+    var isDone=played&&played.locked, isLive=played&&!played.locked;
+    var item=document.createElement('div'); item.className='fixture-item';
+    var infoDiv=document.createElement('div'); infoDiv.style.flex='1';
+    infoDiv.innerHTML='<div class="fixture-teams">'+fix.team1+'<span class="vs">vs</span>'+fix.team2+'</div>'+
+      (isDone?'<div class="fixture-day">Day '+played.day+' · '+(played.winner===1?played.team1:played.team2).split(' ')[0]+' won</div>':'');
+    var right=document.createElement('div'); right.style.cssText='display:flex;align-items:center;gap:8px';
+    var badge=document.createElement('span');
+    badge.className='fix-status '+(isDone?'fix-done':isLive?'fix-live':'fix-pending');
+    badge.textContent=isDone?'Done':isLive?'Live':'Pending';
     right.appendChild(badge);
     if (!isDone) {
-      var btn = document.createElement('button');
-      btn.className = 'btn btn-primary btn-sm';
-      btn.textContent = isLive ? 'Resume' : 'Start';
-      (function(f, p) {
-        btn.addEventListener('click', function() { startDoubleFixture(f, p); });
-      })(fix, played || null);
+      var btn=document.createElement('button'); btn.className='btn btn-primary btn-sm';
+      btn.textContent=isLive?'Resume':'Start';
+      (function(f,p){ btn.addEventListener('click',function(){ startDoubleFixture(f,p); }); })(fix,played||null);
       right.appendChild(btn);
     }
-    item.appendChild(infoDiv);
-    item.appendChild(right);
-    el.appendChild(item);
+    item.appendChild(infoDiv); item.appendChild(right); el.appendChild(item);
   });
 }
 
-function startDoubleFixture(fix, existing) {
-  var m = existing || {
-    id: Date.now(), fid: fix.fid, type: 'doubles', group: 'League', day: doublesDay,
-    team1: fix.team1, team2: fix.team2, sets: [], currentSet: { s1:0, s2:0, history:[] },
-    setWins: [0,0], done: false, winner: null, locked: false
-  };
+function startDoubleFixture(fix,existing) {
+  var m=existing||{id:Date.now(),fid:fix.fid,type:'doubles',group:'League',day:doublesDay,
+    team1:fix.team1,team2:fix.team2,sets:[],currentSet:{s1:0,s2:0,history:[]},setWins:[0,0],done:false,winner:null,locked:false};
   if (!existing) saveMatch(m);
-  currentMatch = m;
-  showScoreSubview('live');
-  renderLive();
+  currentMatch=m; showScoreSubview('live'); renderLive();
 }
 
-// ---- FIREBASE ----
-function saveMatch(m) { set(ref(db, 'matches/' + m.id), m); }
-
-onValue(ref(db, '.info/connected'), function(snap) {
-  var bar = document.getElementById('conn-bar');
-  if (snap.val()) { bar.className = 'conn-bar conn-ok'; bar.textContent = '🟢 Live — all devices in sync'; }
-  else { bar.className = 'conn-bar conn-err'; bar.textContent = '🔴 Offline — reconnecting...'; }
-});
-
-onValue(ref(db, 'matches'), function(snap) {
-  matches = snap.val() || {};
-  var ap = document.querySelector('.page.active');
-  if (ap) {
-    var pid = ap.id.replace('page-','');
-    if (pid === 'home') renderHome();
-    if (pid === 'table') showStandingsTab(currentStandingsTab);
-    if (pid === 'matches') renderMatches();
-    if (pid === 'score' && document.getElementById('score-doubles').style.display !== 'none') renderFixtures();
-  }
-  if (currentMatch && currentMatch.id && matches[currentMatch.id]) {
-    var upd = matches[currentMatch.id];
-    if (upd.locked && !currentMatch.locked) { /* external lock, do nothing */ }
-    currentMatch = upd;
-    if (document.getElementById('score-live').style.display !== 'none') renderLive();
-  }
-});
-
-// ---- LIVE SCOREBOARD ----
 function renderLive() {
-  var m = currentMatch;
-  if (!m) return;
-  var el = document.getElementById('score-live');
-  var s = m.currentSet;
-  var setNum = m.sets.length + 1;
-  var canScore = !m.done && !m.locked;
-  var w1 = s.s1 > s.s2, w2 = s.s2 > s.s1;
-  var setsHtml = '';
-  m.sets.forEach(function(st, i) {
-    setsHtml += '<span class="set-badge ' + (st.winner===1?'set-win':'set-lose') + '">Set ' + (i+1) + ': ' + st.s1 + '-' + st.s2 + '</span>';
-  });
-  if (!m.done) setsHtml += '<span class="set-badge set-ongoing">Set ' + setNum + ': ' + s.s1 + '-' + s.s2 + '</span>';
-
-  el.innerHTML =
-    '<div class="scoreboard">' +
-      '<div class="score-header">' +
-        '<span class="match-info">' + (m.type==='singles' ? 'Singles · Group '+m.group : 'Doubles · League') + ' · Day ' + m.day + '</span>' +
-        '<span class="set-info">' + (m.done ? 'Match Over' : 'Set ' + setNum + ' of 3') + '</span>' +
-      '</div>' +
-      '<div class="sets-row">' + (setsHtml || '<span style="color:#455a64;font-size:12px">No sets yet</span>') + '</div>' +
-      '<div class="teams-row">' +
-        '<div class="team-col left"><div class="team-name">' + m.team1 + '</div><div class="team-score' + (w1?' winning':'') + '">' + s.s1 + '</div><div class="team-sets">Sets: ' + m.setWins[0] + '</div></div>' +
-        '<div class="team-col"><div class="team-name">' + m.team2 + '</div><div class="team-score' + (w2?' winning':'') + '">' + s.s2 + '</div><div class="team-sets">Sets: ' + m.setWins[1] + '</div></div>' +
-      '</div>' +
-      '<div class="score-btns">' +
-        '<button class="score-btn" id="lbtn-p1"' + (canScore?'':' disabled') + '>+1 ' + m.team1.split(' ')[0] + '</button>' +
-        '<button class="score-btn" id="lbtn-p2"' + (canScore?'':' disabled') + '>+1 ' + m.team2.split(' ')[0] + '</button>' +
-      '</div>' +
-      '<div class="score-actions">' +
-        '<button class="btn btn-secondary btn-sm" id="lbtn-undo"' + (canScore && s.history.length ? '' : ' disabled') + '>↩ Undo</button>' +
-        '<button class="btn btn-secondary btn-sm" id="lbtn-exit">✕ Exit</button>' +
-        (m.done && !m.locked ? '<button class="btn btn-danger btn-sm" id="lbtn-lock">🔒 Lock</button>' : '') +
-      '</div>' +
-    '</div>';
-
-  document.getElementById('lbtn-p1').addEventListener('click', function() { addPoint(1); });
-  document.getElementById('lbtn-p2').addEventListener('click', function() { addPoint(2); });
-  document.getElementById('lbtn-undo').addEventListener('click', undoPoint);
-  document.getElementById('lbtn-exit').addEventListener('click', exitMatch);
-  var lb = document.getElementById('lbtn-lock');
-  if (lb) lb.addEventListener('click', lockMatch);
+  var m=currentMatch; if (!m) return;
+  var el=document.getElementById('score-live');
+  var s=m.currentSet, setNum=m.sets.length+1, canScore=!m.done&&!m.locked;
+  var w1=s.s1>s.s2, w2=s.s2>s.s1;
+  var setsHtml='';
+  m.sets.forEach(function(st,i){ setsHtml+='<span class="set-badge '+(st.winner===1?'set-win':'set-lose')+'">Set '+(i+1)+': '+st.s1+'-'+st.s2+'</span>'; });
+  if (!m.done) setsHtml+='<span class="set-badge set-ongoing">Set '+setNum+': '+s.s1+'-'+s.s2+'</span>';
+  el.innerHTML=
+    '<div class="scoreboard">'+
+    '<div class="score-header"><span class="match-info">'+(m.type==='singles'?'Singles · Group '+m.group:'Doubles · League')+' · Day '+m.day+'</span>'+
+    '<span class="set-info">'+(m.done?'Match Over':'Set '+setNum+' of 3')+'</span></div>'+
+    '<div class="sets-row">'+(setsHtml||'<span style="color:#455a64;font-size:12px">No sets yet</span>')+'</div>'+
+    '<div class="teams-row">'+
+    '<div class="team-col left"><div class="team-name">'+m.team1+'</div><div class="team-score'+(w1?' winning':'')+'">'+s.s1+'</div><div class="team-sets">Sets: '+m.setWins[0]+'</div></div>'+
+    '<div class="team-col"><div class="team-name">'+m.team2+'</div><div class="team-score'+(w2?' winning':'')+'">'+s.s2+'</div><div class="team-sets">Sets: '+m.setWins[1]+'</div></div>'+
+    '</div>'+
+    '<div class="score-btns">'+
+    '<button class="score-btn" id="lbtn-p1"'+(canScore?'':' disabled')+'>+1 '+m.team1.split(' ')[0]+'</button>'+
+    '<button class="score-btn" id="lbtn-p2"'+(canScore?'':' disabled')+'>+1 '+m.team2.split(' ')[0]+'</button>'+
+    '</div>'+
+    '<div class="score-actions">'+
+    '<button class="btn btn-secondary btn-sm" id="lbtn-undo"'+(canScore&&s.history.length?'':' disabled')+'>↩ Undo</button>'+
+    '<button class="btn btn-secondary btn-sm" id="lbtn-exit">✕ Exit</button>'+
+    (m.done&&!m.locked?'<button class="btn btn-danger btn-sm" id="lbtn-lock">🔒 Lock</button>':'')+
+    '</div></div>';
+  document.getElementById('lbtn-p1').addEventListener('click',function(){ addPoint(1); });
+  document.getElementById('lbtn-p2').addEventListener('click',function(){ addPoint(2); });
+  document.getElementById('lbtn-undo').addEventListener('click',undoPoint);
+  document.getElementById('lbtn-exit').addEventListener('click',exitMatch);
+  var lb=document.getElementById('lbtn-lock'); if(lb) lb.addEventListener('click',lockMatch);
 }
 
 function addPoint(player) {
-  var m = currentMatch;
-  if (!m || m.done) return;
-  var winScore = WIN_AT[m.type], deuceAt = DEUCE_AT[m.type];
-  var s = m.currentSet;
-  s.history.push({ s1: s.s1, s2: s.s2 });
-  if (player === 1) s.s1++; else s.s2++;
-  var mx = Math.max(s.s1, s.s2), mn = Math.min(s.s1, s.s2);
-  if (s.s1 === deuceAt && s.s2 === deuceAt) {
-    saveMatch(m); renderLive();
-    showOverlay('DEUCE!', m.team1 + ' vs ' + m.team2, [{ label:'Continue', fn:closeOverlay }], false);
-    return;
+  var m=currentMatch; if (!m||m.done) return;
+  var winScore=WIN_AT[m.type],deuceAt=DEUCE_AT[m.type],s=m.currentSet;
+  s.history.push({s1:s.s1,s2:s.s2});
+  if (player===1) s.s1++; else s.s2++;
+  var mx=Math.max(s.s1,s.s2),mn=Math.min(s.s1,s.s2);
+  if (s.s1===deuceAt&&s.s2===deuceAt) { saveMatch(m); renderLive(); showOverlay('DEUCE!',m.team1+' vs '+m.team2,[{label:'Continue',fn:closeOverlay}],false); return; }
+  if (mx>deuceAt&&mn>=deuceAt) {
+    if (mx-mn>=2) { endSet(m); return; }
+    saveMatch(m); renderLive(); showOverlay('Advantage: '+(s.s1>s.s2?m.team1:m.team2).split(' ')[0],'Deuce in progress',[{label:'Continue',fn:closeOverlay}],false); return;
   }
-  if (mx > deuceAt && mn >= deuceAt) {
-    if (mx - mn >= 2) { endSet(m); return; }
-    var leader = s.s1 > s.s2 ? m.team1 : m.team2;
-    saveMatch(m); renderLive();
-    showOverlay('Advantage: ' + leader.split(' ')[0], 'Deuce in progress', [{ label:'Continue', fn:closeOverlay }], false);
-    return;
-  }
-  if (s.s1 >= winScore || s.s2 >= winScore) { endSet(m); return; }
+  if (s.s1>=winScore||s.s2>=winScore) { endSet(m); return; }
   saveMatch(m); renderLive();
 }
 
 function endSet(m) {
-  var s = m.currentSet;
-  var w = s.s1 > s.s2 ? 1 : 2;
-  m.sets.push({ s1:s.s1, s2:s.s2, winner:w });
-  m.setWins[w-1]++;
-  m.currentSet = { s1:0, s2:0, history:[] };
-  if (m.setWins[0] === 2 || m.setWins[1] === 2) {
-    m.done = true; m.winner = m.setWins[0] === 2 ? 1 : 2;
-    saveMatch(m); renderLive();
-    var wName = (m.winner===1 ? m.team1 : m.team2).split(' ')[0];
-    showOverlay('🏆 ' + wName + ' Wins!', 'Sets: ' + m.setWins[0] + '-' + m.setWins[1],
-      [{ label:'🔒 Lock Match', fn:lockMatch }, { label:'Keep Editing', fn:closeOverlay }], true);
-    return;
+  var s=m.currentSet,w=s.s1>s.s2?1:2;
+  m.sets.push({s1:s.s1,s2:s.s2,winner:w}); m.setWins[w-1]++; m.currentSet={s1:0,s2:0,history:[]};
+  if (m.setWins[0]===2||m.setWins[1]===2) {
+    m.done=true; m.winner=m.setWins[0]===2?1:2; saveMatch(m); renderLive();
+    showOverlay('🏆 '+(m.winner===1?m.team1:m.team2).split(' ')[0]+' Wins!','Sets: '+m.setWins[0]+'-'+m.setWins[1],
+      [{label:'🔒 Lock Match',fn:lockMatch},{label:'Keep Editing',fn:closeOverlay}],true); return;
   }
-  var sw = (s.s1 > s.s2 ? m.team1 : m.team2).split(' ')[0];
-  saveMatch(m); renderLive();
-  showOverlay('Set Won!', sw + ' wins the set', [{ label:'Next Set', fn:closeOverlay }], false);
+  saveMatch(m); renderLive(); showOverlay('Set Won!',(s.s1>s.s2?m.team1:m.team2).split(' ')[0]+' wins the set',[{label:'Next Set',fn:closeOverlay}],false);
 }
 
 function undoPoint() {
-  var m = currentMatch;
-  if (!m || !m.currentSet.history.length) return;
-  var prev = m.currentSet.history.pop();
-  m.currentSet.s1 = prev.s1; m.currentSet.s2 = prev.s2;
+  var m=currentMatch; if (!m||!m.currentSet.history.length) return;
+  var prev=m.currentSet.history.pop(); m.currentSet.s1=prev.s1; m.currentSet.s2=prev.s2;
   saveMatch(m); renderLive();
 }
 
 function lockMatch() {
-  closeOverlay();
-  var m = currentMatch;
-  if (!m) return;
-  m.locked = true; saveMatch(m);
-  currentMatch = null;
-  showScoreSubview('home');
+  closeOverlay(); var m=currentMatch; if (!m) return;
+  m.locked=true; saveMatch(m); currentMatch=null;
+  showScoreSubview(scoreMode==='doubles'?'doubles':'singles');
 }
 
 function exitMatch() {
-  if (currentMatch && currentMatch.done) { lockMatch(); return; }
-  if (confirm('Exit without saving?')) {
-    currentMatch = null;
-    showScoreSubview('home');
-  }
+  if (currentMatch&&currentMatch.done) { lockMatch(); return; }
+  if (confirm('Exit without saving?')) { currentMatch=null; showScoreSubview(scoreMode==='doubles'?'doubles':'singles'); }
 }
 
-// ---- OVERLAYS ----
-function showOverlay(title, sub, actions, isWinner) {
-  document.getElementById('overlay-title').textContent = title;
-  document.getElementById('overlay-sub').textContent = sub;
-  document.getElementById('overlay-box').className = 'overlay-box' + (isWinner ? ' winner-box' : '');
-  var el = document.getElementById('overlay-btns');
-  el.innerHTML = '';
-  actions.forEach(function(a) {
-    var b = document.createElement('button');
-    b.className = 'btn btn-primary'; b.textContent = a.label;
-    b.addEventListener('click', a.fn); el.appendChild(b);
-  });
-  document.getElementById('overlay').style.display = 'flex';
+function showOverlay(title,sub,actions,isWinner) {
+  document.getElementById('overlay-title').textContent=title;
+  document.getElementById('overlay-sub').textContent=sub;
+  document.getElementById('overlay-box').className='overlay-box'+(isWinner?' winner-box':'');
+  var el=document.getElementById('overlay-btns'); el.innerHTML='';
+  actions.forEach(function(a){ var b=document.createElement('button'); b.className='btn btn-primary'; b.textContent=a.label; b.addEventListener('click',a.fn); el.appendChild(b); });
+  document.getElementById('overlay').style.display='flex';
 }
-function closeOverlay() {
-  document.getElementById('overlay').style.display = 'none';
-  if (currentMatch) renderLive();
-}
+function closeOverlay() { document.getElementById('overlay').style.display='none'; if(currentMatch) renderLive(); }
 
-// ---- PIN MODAL ----
-document.getElementById('pin-cancel').addEventListener('click', function() {
-  document.getElementById('pin-modal').style.display = 'none';
-  pendingEditMatchId = null;
-  document.getElementById('pin-input').value = '';
-  document.getElementById('pin-err').textContent = '';
+// PIN
+document.getElementById('pin-cancel').addEventListener('click',function(){ document.getElementById('pin-modal').style.display='none'; pendingEditMatchId=null; document.getElementById('pin-input').value=''; document.getElementById('pin-err').textContent=''; });
+document.getElementById('pin-confirm').addEventListener('click',function(){
+  if (document.getElementById('pin-input').value!==ADMIN_PIN) { document.getElementById('pin-err').textContent='Incorrect PIN.'; document.getElementById('pin-input').value=''; return; }
+  document.getElementById('pin-modal').style.display='none'; document.getElementById('pin-input').value=''; document.getElementById('pin-err').textContent='';
+  doAdminEdit(pendingEditMatchId); pendingEditMatchId=null;
 });
-document.getElementById('pin-confirm').addEventListener('click', function() {
-  var entered = document.getElementById('pin-input').value;
-  if (entered !== ADMIN_PIN) {
-    document.getElementById('pin-err').textContent = 'Incorrect PIN.';
-    document.getElementById('pin-input').value = ''; return;
-  }
-  document.getElementById('pin-modal').style.display = 'none';
-  document.getElementById('pin-input').value = '';
-  document.getElementById('pin-err').textContent = '';
-  doAdminEdit(pendingEditMatchId);
-  pendingEditMatchId = null;
-});
-document.getElementById('pin-input').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') document.getElementById('pin-confirm').click();
-});
-
-function adminEdit(matchId) {
-  pendingEditMatchId = matchId;
-  document.getElementById('pin-err').textContent = '';
-  document.getElementById('pin-input').value = '';
-  document.getElementById('pin-modal').style.display = 'flex';
-  setTimeout(function() { document.getElementById('pin-input').focus(); }, 100);
-}
-
+document.getElementById('pin-input').addEventListener('keydown',function(e){ if(e.key==='Enter') document.getElementById('pin-confirm').click(); });
+function adminEdit(matchId) { pendingEditMatchId=matchId; document.getElementById('pin-err').textContent=''; document.getElementById('pin-input').value=''; document.getElementById('pin-modal').style.display='flex'; setTimeout(function(){ document.getElementById('pin-input').focus(); },100); }
 function doAdminEdit(matchId) {
-  var m = matches[matchId];
-  if (!m) return;
-  m.locked = false; m.done = false; m.winner = null;
-  m.setWins = [0,0]; m.sets = []; m.currentSet = { s1:0, s2:0, history:[] };
-  currentMatch = m; saveMatch(m);
-  gotoPage('score');
-  showScoreSubview('live');
-  renderLive();
+  var m=matches[matchId]; if (!m) return;
+  m.locked=false; m.done=false; m.winner=null; m.setWins=[0,0]; m.sets=[]; m.currentSet={s1:0,s2:0,history:[]};
+  currentMatch=m; saveMatch(m); scoreMode=m.type==='doubles'?'doubles':'singles';
+  gotoPage('score'); showScoreSubview('live'); renderLive();
 }
 
-// ---- MATCHES LIST ----
+// Matches list
+[0,1,2,3,4].forEach(function(d){ document.getElementById('df-'+d).addEventListener('click',function(){ currentDayFilter=d; [0,1,2,3,4].forEach(function(x){ document.getElementById('df-'+x).classList.toggle('active',x===d); }); renderMatches(); }); });
 function renderMatches() {
-  var el = document.getElementById('matches-list');
-  el.innerHTML = '';
-  var list = Object.values(matches).filter(function(m) { return currentDayFilter === 0 || m.day === currentDayFilter; });
-  list.sort(function(a,b) { return b.id - a.id; });
-  if (!list.length) { el.innerHTML = '<div class="empty">No matches found</div>'; return; }
+  var el=document.getElementById('matches-list'); el.innerHTML='';
+  var list=Object.values(matches).filter(function(m){ return currentDayFilter===0||m.day===currentDayFilter; });
+  list.sort(function(a,b){ return b.id-a.id; });
+  if (!list.length) { el.innerHTML='<div class="empty">No matches found</div>'; return; }
   list.forEach(function(m) {
-    var winner = m.done ? (m.winner===1 ? m.team1 : m.team2) : null;
-    var scores = m.sets.map(function(s) { return s.s1+'-'+s.s2; }).join(', ');
-    var item = document.createElement('div');
-    item.className = 'match-item';
-    item.innerHTML =
-      '<div class="match-teams">' + m.team1 + '<span class="vs">vs</span>' + m.team2 + '</div>' +
-      '<div class="match-meta"><span class="dot ' + (m.done?'dot-done':m.sets.length?'dot-live':'dot-up') + '"></span>' +
-      (m.type==='singles' ? 'Singles · Group '+m.group : 'Doubles · League') + ' · Day ' + m.day + '</div>' +
-      (m.done ? '<div class="match-result">🏆 '+winner+' won · '+scores+'</div>' : '<div class="match-result ongoing">In progress · '+(scores||'Not started')+'</div>');
-    if (m.locked) {
-      var btn = document.createElement('button');
-      btn.textContent = '✏️ Edit (Admin)'; btn.className = 'btn btn-secondary btn-sm'; btn.style.marginTop = '8px';
-      (function(id) { btn.addEventListener('click', function() { adminEdit(id); }); })(m.id);
-      item.appendChild(btn);
-    }
+    var winner=m.done?(m.winner===1?m.team1:m.team2):null;
+    var scores=m.sets.map(function(s){ return s.s1+'-'+s.s2; }).join(', ');
+    var item=document.createElement('div'); item.className='match-item';
+    item.innerHTML='<div class="match-teams">'+m.team1+'<span class="vs">vs</span>'+m.team2+'</div>'+
+      '<div class="match-meta"><span class="dot '+(m.done?'dot-done':m.sets.length?'dot-live':'dot-up')+'"></span>'+(m.type==='singles'?'Singles · Group '+m.group:'Doubles · League')+' · Day '+m.day+'</div>'+
+      (m.done?'<div class="match-result">🏆 '+winner+' won · '+scores+'</div>':'<div class="match-result ongoing">In progress · '+(scores||'Not started')+'</div>');
+    if (m.locked) { var btn=document.createElement('button'); btn.textContent='✏️ Edit (Admin)'; btn.className='btn btn-secondary btn-sm'; btn.style.marginTop='8px'; (function(id){ btn.addEventListener('click',function(){ adminEdit(id); }); })(m.id); item.appendChild(btn); }
     el.appendChild(item);
   });
 }
 
-[0,1,2,3,4].forEach(function(d) {
-  document.getElementById('df-' + d).addEventListener('click', function() {
-    currentDayFilter = d;
-    [0,1,2,3,4].forEach(function(x) { document.getElementById('df-'+x).classList.toggle('active', x===d); });
-    renderMatches();
-  });
-});
-
-// ---- STANDINGS ----
+// Standings
+['singlesA','singlesB','doubles'].forEach(function(t){ document.getElementById('tab-'+t).addEventListener('click',function(){ showStandingsTab(t); }); });
 function showStandingsTab(tab) {
-  currentStandingsTab = tab;
-  ['singlesA','singlesB','doubles'].forEach(function(t) {
-    document.getElementById('tab-'+t).classList.toggle('active', t===tab);
-  });
-  var type   = tab === 'doubles' ? 'doubles' : 'singles';
-  var group  = tab === 'singlesA' ? 'A' : tab === 'singlesB' ? 'B' : null;
-  var title  = tab === 'singlesA' ? 'Singles — Group A' : tab === 'singlesB' ? 'Singles — Group B' : 'Doubles — League';
-  var relevant = Object.values(matches).filter(function(m) {
-    return m.done && m.type === type && (type === 'doubles' || m.group === group);
-  });
-  var players = {};
-  relevant.forEach(function(m) {
-    [m.team1, m.team2].forEach(function(t) {
-      if (!players[t]) players[t] = { name:t, mp:0, mw:0, ml:0, pts:0, sw:0, sl:0, pf:0, pa:0 };
-    });
+  currentStandingsTab=tab;
+  ['singlesA','singlesB','doubles'].forEach(function(t){ document.getElementById('tab-'+t).classList.toggle('active',t===tab); });
+  var type=tab==='doubles'?'doubles':'singles', group=tab==='singlesA'?'A':tab==='singlesB'?'B':null;
+  var title=tab==='singlesA'?'Singles — Group A':tab==='singlesB'?'Singles — Group B':'Doubles — League';
+  var relevant=Object.values(matches).filter(function(m){ return m.done&&m.type===type&&(type==='doubles'||m.group===group); });
+  var players={};
+  relevant.forEach(function(m){
+    [m.team1,m.team2].forEach(function(t){ if(!players[t]) players[t]={name:t,mp:0,mw:0,ml:0,pts:0,sw:0,sl:0,pf:0,pa:0}; });
     players[m.team1].mp++; players[m.team2].mp++;
-    var w = m.winner===1 ? m.team1 : m.team2, l = m.winner===1 ? m.team2 : m.team1;
-    players[w].mw++; players[w].pts += 3; players[l].ml++;
-    m.sets.forEach(function(s) {
-      players[m.team1].pf += s.s1; players[m.team1].pa += s.s2;
-      players[m.team2].pf += s.s2; players[m.team2].pa += s.s1;
-      if (s.winner===1) { players[m.team1].sw++; players[m.team2].sl++; }
-      else              { players[m.team2].sw++; players[m.team1].sl++; }
-    });
+    var w=m.winner===1?m.team1:m.team2,l=m.winner===1?m.team2:m.team1;
+    players[w].mw++; players[w].pts+=3; players[l].ml++;
+    m.sets.forEach(function(s){ players[m.team1].pf+=s.s1; players[m.team1].pa+=s.s2; players[m.team2].pf+=s.s2; players[m.team2].pa+=s.s1; if(s.winner===1){players[m.team1].sw++;players[m.team2].sl++;}else{players[m.team2].sw++;players[m.team1].sl++;} });
   });
-  var rows = Object.values(players).sort(function(a,b) {
-    if (b.pts !== a.pts) return b.pts - a.pts;
-    var sd = (b.sw-b.sl) - (a.sw-a.sl);
-    if (sd !== 0) return sd;
-    return (b.pf-b.pa) - (a.pf-a.pa);
-  });
-  var el = document.getElementById('standings-content');
-  if (!rows.length) { el.innerHTML = '<div class="empty">No completed matches yet</div>'; return; }
-  el.innerHTML = '<div class="card-title">' + title + '</div>' +
-    '<table class="pt-table"><tr><th>Team</th><th>MP</th><th>W</th><th>L</th><th>SW</th><th>SL</th><th>SD</th><th>PF</th><th>PA</th><th>Pts</th></tr>' +
-    rows.map(function(p,i) {
-      return '<tr><td><span class="rank-badge '+(i===0?'r1':i===1?'r2':i===2?'r3':'')+'">'+(i+1)+'</span>'+p.name+'</td>'+
-        '<td>'+p.mp+'</td><td>'+p.mw+'</td><td>'+p.ml+'</td><td>'+p.sw+'</td><td>'+p.sl+'</td>'+
-        '<td>'+(p.sw-p.sl)+'</td><td>'+p.pf+'</td><td>'+p.pa+'</td><td><strong>'+p.pts+'</strong></td></tr>';
-    }).join('') + '</table>';
+  var rows=Object.values(players).sort(function(a,b){ if(b.pts!==a.pts) return b.pts-a.pts; var sd=(b.sw-b.sl)-(a.sw-a.sl); if(sd!==0) return sd; return (b.pf-b.pa)-(a.pf-a.pa); });
+  var el=document.getElementById('standings-content');
+  if (!rows.length) { el.innerHTML='<div class="empty">No completed matches yet</div>'; return; }
+  el.innerHTML='<div class="card-title">'+title+'</div><table class="pt-table"><tr><th>Team</th><th>MP</th><th>W</th><th>L</th><th>SW</th><th>SL</th><th>SD</th><th>PF</th><th>PA</th><th>Pts</th></tr>'+
+    rows.map(function(p,i){ return '<tr><td><span class="rank-badge '+(i===0?'r1':i===1?'r2':i===2?'r3':'')+'">'+(i+1)+'</span>'+p.name+'</td><td>'+p.mp+'</td><td>'+p.mw+'</td><td>'+p.ml+'</td><td>'+p.sw+'</td><td>'+p.sl+'</td><td>'+(p.sw-p.sl)+'</td><td>'+p.pf+'</td><td>'+p.pa+'</td><td><strong>'+p.pts+'</strong></td></tr>'; }).join('')+'</table>';
 }
 
-['singlesA','singlesB','doubles'].forEach(function(t) {
-  document.getElementById('tab-'+t).addEventListener('click', function() { showStandingsTab(t); });
-});
-
-// ---- HOME ----
+// Home
 function renderHome() {
-  var todayM = Object.values(matches).filter(function(m) { return m.day === singlesDay; });
-  var total  = Object.values(matches).filter(function(m) { return m.done; }).length;
-  var live   = Object.values(matches).filter(function(m) { return !m.done && m.sets && m.sets.length > 0; }).length;
-  document.getElementById('header-day').textContent = 'Day ' + singlesDay + ' of 4';
-  document.getElementById('home-content').innerHTML =
-    '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:12px">' +
-    '<div class="card" style="margin:0;text-align:center"><div style="font-size:22px;font-weight:800;color:#4fc3f7">'+total+'</div><div style="font-size:11px;color:#7a9cc4;margin-top:2px">Completed</div></div>' +
-    '<div class="card" style="margin:0;text-align:center"><div style="font-size:22px;font-weight:800;color:#ff7043">'+live+'</div><div style="font-size:11px;color:#7a9cc4;margin-top:2px">In Progress</div></div>' +
-    '<div class="card" style="margin:0;text-align:center"><div style="font-size:22px;font-weight:800;color:#ffd54f">'+singlesDay+'</div><div style="font-size:11px;color:#7a9cc4;margin-top:2px">Today (Day)</div></div>' +
-    '</div><div class="card"><div class="card-title">All Matches Today (Day ' + singlesDay + ')</div>' +
-    (todayM.length === 0 ? '<div class="empty">No matches today yet</div>' :
-      todayM.map(function(m) {
-        var winner = m.done ? (m.winner===1?m.team1:m.team2) : null;
-        return '<div class="match-item"><div class="match-teams">'+m.team1+'<span class="vs">vs</span>'+m.team2+'</div>' +
-          '<div class="match-meta"><span class="dot '+(m.done?'dot-done':'dot-live')+'"></span>'+(m.type==='singles'?'Group '+m.group:'Doubles')+'</div>' +
-          (m.done?'<div class="match-result">🏆 '+winner+' won</div>':'<div class="match-result ongoing">In progress</div>')+'</div>';
-      }).join('')) +
+  var total=Object.values(matches).filter(function(m){ return m.done; }).length;
+  var live=Object.values(matches).filter(function(m){ return !m.done&&m.sets&&m.sets.length>0; }).length;
+  var todayM=Object.values(matches).filter(function(m){ return m.day===singlesDay; });
+  document.getElementById('header-day').textContent='Day '+singlesDay+' of 4';
+  document.getElementById('home-content').innerHTML=
+    '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:12px">'+
+    '<div class="card" style="margin:0;text-align:center"><div style="font-size:22px;font-weight:800;color:#4fc3f7">'+total+'</div><div style="font-size:11px;color:#7a9cc4;margin-top:2px">Completed</div></div>'+
+    '<div class="card" style="margin:0;text-align:center"><div style="font-size:22px;font-weight:800;color:#ff7043">'+live+'</div><div style="font-size:11px;color:#7a9cc4;margin-top:2px">In Progress</div></div>'+
+    '<div class="card" style="margin:0;text-align:center"><div style="font-size:22px;font-weight:800;color:#ffd54f">'+singlesDay+'</div><div style="font-size:11px;color:#7a9cc4;margin-top:2px">Today (Day)</div></div>'+
+    '</div><div class="card"><div class="card-title">Matches Today (Day '+singlesDay+')</div>'+
+    (todayM.length===0?'<div class="empty">No matches today yet</div>':todayM.map(function(m){
+      var winner=m.done?(m.winner===1?m.team1:m.team2):null;
+      return '<div class="match-item"><div class="match-teams">'+m.team1+'<span class="vs">vs</span>'+m.team2+'</div>'+
+        '<div class="match-meta"><span class="dot '+(m.done?'dot-done':'dot-live')+'"></span>'+(m.type==='singles'?'Group '+m.group:'Doubles')+'</div>'+
+        (m.done?'<div class="match-result">🏆 '+winner+' won</div>':'<div class="match-result ongoing">In progress</div>')+'</div>';
+    }).join(''))+
     '</div>';
 }
 
