@@ -549,8 +549,13 @@ function startFixture(fid,existing,t1,t2,type){
   var isDoubleKO=(fid===KO_FIDS.dSF1||fid===KO_FIDS.dSF2||fid===KO_FIDS.dFinal);
   var isSingleSF=(fid===KO_FIDS.sSF1||fid===KO_FIDS.sSF2);
   var isSingleF=(fid===KO_FIDS.sFinal);
-  var stage=type==='doubles'?(isDoubleKO?(fid===KO_FIDS.dFinal?'final':'knockout'):'league')
-                            :(isSingleF?'final':isSingleSF?'semifinal':'group');
+  var isDoubleFinal=(fid===KO_FIDS.dFinal);
+  var stage;
+  if(type==='doubles'){
+    stage=isDoubleFinal?'final':isDoubleKO?'semifinal':'league';
+  } else {
+    stage=isSingleF?'final':isSingleSF?'semifinal':'group';
+  }
   currentMatch=null;
   var m=existing||{
     id:Date.now(),fid:fid,type:type,stage:stage,
