@@ -162,16 +162,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         </div>
       </div>
       <div class="card" style="margin-top:10px" id="singles-fixtures-list"></div>
-      <div id="singles-sf-setup" style="display:none">
-        <div class="card" style="margin-top:10px">
-          <div class="card-title" id="singles-ko-title">Semi Final</div>
-          <div class="form-row">
-            <div class="form-group"><label class="form-label">Player 1</label><input class="form-input" id="p1" placeholder="e.g. Raj"></div>
-            <div class="form-group"><label class="form-label">Player 2</label><input class="form-input" id="p2" placeholder="e.g. Nikunj"></div>
-          </div>
-          <button class="btn btn-primary btn-full" id="start-singles-btn">Start Match</button>
-        </div>
-      </div>
     </div>
     <div id="score-doubles" style="display:none">
       <div class="card" style="margin-top:10px">
@@ -423,11 +413,7 @@ document.getElementById('score-tab-doubles').addEventListener('click',function()
     singlesStage=s==='group'?'group':s==='sf'?'semifinal':'final';
     ['group','sf','f'].forEach(function(x){document.getElementById('singles-stage-'+x).classList.toggle('active',x===s);});
     document.getElementById('singles-group-opts').style.display=s==='group'?'':'none';
-    document.getElementById('singles-fixtures-list').style.display=s==='group'?'':'none';
-    document.getElementById('singles-sf-setup').style.display=s!=='group'?'':'none';
-    if(s==='group') renderSinglesFixtures();
-    if(s==='sf') document.getElementById('singles-ko-title').textContent='Semi Final';
-    if(s==='f') document.getElementById('singles-ko-title').textContent='Final';
+    renderSinglesFixtures();
   });
 });
 document.getElementById('grp-a').addEventListener('click',function(){
@@ -448,24 +434,58 @@ document.getElementById('grp-b').addEventListener('click',function(){
 
 function renderSinglesFixtures(){
   var el=document.getElementById('singles-fixtures-list');
-  el.innerHTML='<div class="card-title">Group '+singlesGroup+' Fixtures</div>';
-  var fixtures=singlesGroup==='A'?SINGLES_A_FIXTURES:SINGLES_B_FIXTURES;
-  fixtures.forEach(function(fix){
-    var played=Object.values(matches).find(function(m){return m.type==='singles'&&m.fid===fix.fid;});
-    appendFixtureItem(el,fix.fid,fix.team1,fix.team2,played,'league',false,'singles');
-  });
-}
+  el.innerHTML='';
 
-document.getElementById('start-singles-btn').addEventListener('click',function(){
-  var t1=(document.getElementById('p1').value||'').trim();
-  var t2=(document.getElementById('p2').value||'').trim();
-  if(!t1||!t2){alert('Enter both player names.');return;}
-  var fid=singlesStage==='semifinal'?KO_FIDS.sSF1+'_'+Date.now():KO_FIDS.sFinal+'_'+Date.now();
-  currentMatch=null;
-  var m={id:Date.now(),fid:fid,type:'singles',stage:singlesStage,group:null,day:singlesDay,
-    team1:t1,team2:t2,sets:[],currentSet:{s1:0,s2:0,history:[]},setWins:[0,0],done:false,winner:null,locked:false};
-  currentMatch=m;saveMatch(m);showScoreSubview('live');renderLive();
-});
+  if(singlesStage==='group'){
+    el.innerHTML='<div class="card-title">Group '+singlesGroup+' Fixtures</div>';
+    var fixtures=singlesGroup==='A'?SINGLES_A_FIXTURES:SINGLES_B_FIXTURES;
+    fixtures.forEach(function(fix){
+      var played=Object.values(matches).find(function(m){return m.type==='singles'&&m.fid===fix.fid;});
+      appendFixtureItem(el,fix.fid,fix.team1,fix.team2,played,'league',false,'singles');
+    });
+    return;
+  }
+
+  // Knockouts — check if group stage is complete
+  var rowsA=getStandings('singles','A');
+  var rowsB=getStandings('singles','B');
+  var groupADone=rowsA.length===6&&rowsA.every(function(t){return t.mp===5;});
+  var groupBDone=rowsB.length===6&&rowsB.every(function(t){return t.mp===5;});
+  var groupsDone=groupADone&&groupBDone;
+
+  if(singlesStage==='semifinal'){
+    el.innerHTML='<div class="card-title">Singles Semi Finals</div>';
+    var sf1t1=groupsDone&&rowsA[0]?rowsA[0].name:'TBD (A 1st)';
+    var sf1t2=groupsDone&&rowsB[1]?rowsB[1].name:'TBD (B 2nd)';
+    var sf2t1=groupsDone&&rowsA[1]?rowsA[1].name:'TBD (A 2nd)';
+    var sf2t2=groupsDone&&rowsB[0]?rowsB[0].name:'TBD (B 1st)';
+    var sf1p=Object.values(matches).find(function(m){return m.fid===KO_FIDS.sSF1;});
+    var sf2p=Object.values(matches).find(function(m){return m.fid===KO_FIDS.sSF2;});
+    appendFixtureItem(el,KO_FIDS.sSF1,sf1t1,sf1t2,sf1p,'SF1',!groupsDone,'singles');
+    appendFixtureItem(el,KO_FIDS.sSF2,sf2t1,sf2t2,sf2p,'SF2',!groupsDone,'singles');
+    if(!groupsDone){
+      var msg=document.createElement('div');
+      msg.style.cssText='font-size:13px;color:#455a64;padding:8px 12px';
+      msg.textContent='Complete all group stage matches to unlock semi finals.';
+      el.appendChild(msg);
+    }
+  }
+
+  if(singlesStage==='final'){
+    el.innerHTML='<div class="card-title">Singles Final</div>';
+    var fw1=getKOWinner(KO_FIDS.sSF1);
+    var fw2=getKOWinner(KO_FIDS.sSF2);
+    var sfsDone=!!(fw1&&fw2);
+    var fp=Object.values(matches).find(function(m){return m.fid===KO_FIDS.sFinal;});
+    appendFixtureItem(el,KO_FIDS.sFinal,fw1||'TBD (SF1 winner)',fw2||'TBD (SF2 winner)',fp,'Final',!sfsDone,'singles');
+    if(!sfsDone){
+      var msg2=document.createElement('div');
+      msg2.style.cssText='font-size:13px;color:#455a64;padding:8px 12px';
+      msg2.textContent='Complete both semi finals to unlock the final.';
+      el.appendChild(msg2);
+    }
+  }
+}
 
 // ---- DOUBLES DAY ----
 [1,2,3,4].forEach(function(d){
@@ -526,12 +546,16 @@ function appendFixtureItem(el,fid,t1,t2,played,label,isLocked,itemType){
 }
 
 function startFixture(fid,existing,t1,t2,type){
-  var isKO=(fid===KO_FIDS.dSF1||fid===KO_FIDS.dSF2||fid===KO_FIDS.dFinal);
-  var stage=type==='singles'?'group':isKO?'knockout':'league';
+  var isDoubleKO=(fid===KO_FIDS.dSF1||fid===KO_FIDS.dSF2||fid===KO_FIDS.dFinal);
+  var isSingleSF=(fid===KO_FIDS.sSF1||fid===KO_FIDS.sSF2);
+  var isSingleF=(fid===KO_FIDS.sFinal);
+  var stage=type==='doubles'?(isDoubleKO?(fid===KO_FIDS.dFinal?'final':'knockout'):'league')
+                            :(isSingleF?'final':isSingleSF?'semifinal':'group');
   currentMatch=null;
   var m=existing||{
     id:Date.now(),fid:fid,type:type,stage:stage,
-    group:type==='singles'?singlesGroup:'League',day:type==='singles'?singlesDay:doublesDay,
+    group:type==='singles'&&stage==='group'?singlesGroup:'League',
+    day:type==='singles'?singlesDay:doublesDay,
     team1:t1,team2:t2,sets:[],currentSet:{s1:0,s2:0,history:[]},
     setWins:[0,0],done:false,winner:null,locked:false
   };
