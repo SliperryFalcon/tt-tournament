@@ -133,11 +133,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     </div>
     <div id="score-singles">
       <div class="card" style="margin-top:10px">
-        <div class="card-title">Singles Match</div>
-        <div class="form-row">
-          <div class="form-group"><label class="form-label">Player 1</label><input class="form-input" id="p1" placeholder="e.g. Raj"></div>
-          <div class="form-group"><label class="form-label">Player 2</label><input class="form-input" id="p2" placeholder="e.g. Nikunj"></div>
-        </div>
+        <div class="card-title">Singles — Pick Fixture</div>
         <div class="form-group">
           <label class="form-label">Stage</label>
           <div class="toggle-group">
@@ -164,7 +160,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
             <button class="toggle-btn" id="sday-4">4</button>
           </div>
         </div>
-        <button class="btn btn-primary btn-full" id="start-singles-btn">Start Match</button>
+      </div>
+      <div class="card" style="margin-top:10px" id="singles-fixtures-list"></div>
+      <div id="singles-sf-setup" style="display:none">
+        <div class="card" style="margin-top:10px">
+          <div class="card-title" id="singles-ko-title">Semi Final</div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Player 1</label><input class="form-input" id="p1" placeholder="e.g. Raj"></div>
+            <div class="form-group"><label class="form-label">Player 2</label><input class="form-input" id="p2" placeholder="e.g. Nikunj"></div>
+          </div>
+          <button class="btn btn-primary btn-full" id="start-singles-btn">Start Match</button>
+        </div>
       </div>
     </div>
     <div id="score-doubles" style="display:none">
@@ -238,16 +244,57 @@ var WIN_AT = {singles:11,doubles:21};
 var DEUCE_AT = {singles:10,doubles:20};
 var KO_FIDS = {dSF1:'dSF1',dSF2:'dSF2',dFinal:'dFinal',sSF1:'sSF1',sSF2:'sSF2',sFinal:'sFinal'};
 var DOUBLES_FIXTURES = [
-  {fid:'d01',team1:'Abhijit & Rishav',team2:'Saikat & HN Chatterjee'},
-  {fid:'d02',team1:'Abhijit & Rishav',team2:'Raj & Nikunj'},
-  {fid:'d03',team1:'Abhijit & Rishav',team2:'Rahul & Aarav'},
-  {fid:'d04',team1:'Abhijit & Rishav',team2:'Yogesh & Subrata'},
-  {fid:'d05',team1:'Saikat & HN Chatterjee',team2:'Raj & Nikunj'},
-  {fid:'d06',team1:'Saikat & HN Chatterjee',team2:'Rahul & Aarav'},
-  {fid:'d07',team1:'Saikat & HN Chatterjee',team2:'Yogesh & Subrata'},
-  {fid:'d08',team1:'Raj & Nikunj',team2:'Rahul & Aarav'},
-  {fid:'d09',team1:'Raj & Nikunj',team2:'Yogesh & Subrata'},
-  {fid:'d10',team1:'Rahul & Aarav',team2:'Yogesh & Subrata'},
+  {fid:'d01',team1:'Abhijit & Rishav',team2:'Raj & Nikunj'},
+  {fid:'d02',team1:'Abhijit & Rishav',team2:'Rahul & Arnav'},
+  {fid:'d03',team1:'Abhijit & Rishav',team2:'Yogesh & Subrata'},
+  {fid:'d04',team1:'Abhijit & Rishav',team2:'Swarnim & HN Chatterjee'},
+  {fid:'d05',team1:'Abhijit & Rishav',team2:'Saif & Atibur'},
+  {fid:'d06',team1:'Raj & Nikunj',team2:'Rahul & Arnav'},
+  {fid:'d07',team1:'Raj & Nikunj',team2:'Yogesh & Subrata'},
+  {fid:'d08',team1:'Raj & Nikunj',team2:'Swarnim & HN Chatterjee'},
+  {fid:'d09',team1:'Raj & Nikunj',team2:'Saif & Atibur'},
+  {fid:'d10',team1:'Rahul & Arnav',team2:'Yogesh & Subrata'},
+  {fid:'d11',team1:'Rahul & Arnav',team2:'Swarnim & HN Chatterjee'},
+  {fid:'d12',team1:'Rahul & Arnav',team2:'Saif & Atibur'},
+  {fid:'d13',team1:'Yogesh & Subrata',team2:'Swarnim & HN Chatterjee'},
+  {fid:'d14',team1:'Yogesh & Subrata',team2:'Saif & Atibur'},
+  {fid:'d15',team1:'Swarnim & HN Chatterjee',team2:'Saif & Atibur'},
+];
+
+var SINGLES_A_FIXTURES = [
+  {fid:'sA01',team1:'Rahul',team2:'Abhijit'},
+  {fid:'sA02',team1:'Rahul',team2:'Raj'},
+  {fid:'sA03',team1:'Rahul',team2:'Arnav'},
+  {fid:'sA04',team1:'Rahul',team2:'Atibur'},
+  {fid:'sA05',team1:'Rahul',team2:'Chatterjee'},
+  {fid:'sA06',team1:'Abhijit',team2:'Raj'},
+  {fid:'sA07',team1:'Abhijit',team2:'Arnav'},
+  {fid:'sA08',team1:'Abhijit',team2:'Atibur'},
+  {fid:'sA09',team1:'Abhijit',team2:'Chatterjee'},
+  {fid:'sA10',team1:'Raj',team2:'Arnav'},
+  {fid:'sA11',team1:'Raj',team2:'Atibur'},
+  {fid:'sA12',team1:'Raj',team2:'Chatterjee'},
+  {fid:'sA13',team1:'Arnav',team2:'Atibur'},
+  {fid:'sA14',team1:'Arnav',team2:'Chatterjee'},
+  {fid:'sA15',team1:'Atibur',team2:'Chatterjee'},
+];
+
+var SINGLES_B_FIXTURES = [
+  {fid:'sB01',team1:'Swarnim',team2:'Yogesh'},
+  {fid:'sB02',team1:'Swarnim',team2:'Rishabh'},
+  {fid:'sB03',team1:'Swarnim',team2:'Nikunj'},
+  {fid:'sB04',team1:'Swarnim',team2:'Saif'},
+  {fid:'sB05',team1:'Swarnim',team2:'Subrata'},
+  {fid:'sB06',team1:'Yogesh',team2:'Rishabh'},
+  {fid:'sB07',team1:'Yogesh',team2:'Nikunj'},
+  {fid:'sB08',team1:'Yogesh',team2:'Saif'},
+  {fid:'sB09',team1:'Yogesh',team2:'Subrata'},
+  {fid:'sB10',team1:'Rishabh',team2:'Nikunj'},
+  {fid:'sB11',team1:'Rishabh',team2:'Saif'},
+  {fid:'sB12',team1:'Rishabh',team2:'Subrata'},
+  {fid:'sB13',team1:'Nikunj',team2:'Saif'},
+  {fid:'sB14',team1:'Nikunj',team2:'Subrata'},
+  {fid:'sB15',team1:'Saif',team2:'Subrata'},
 ];
 
 firebase.initializeApp({
@@ -370,27 +417,52 @@ document.getElementById('score-tab-doubles').addEventListener('click',function()
   showScoreSubview('doubles');
 });
 
-// ---- SINGLES SETUP ----
+// ---- SINGLES STAGE ----
 ['group','sf','f'].forEach(function(s){
   document.getElementById('singles-stage-'+s).addEventListener('click',function(){
     singlesStage=s==='group'?'group':s==='sf'?'semifinal':'final';
     ['group','sf','f'].forEach(function(x){document.getElementById('singles-stage-'+x).classList.toggle('active',x===s);});
     document.getElementById('singles-group-opts').style.display=s==='group'?'':'none';
+    document.getElementById('singles-fixtures-list').style.display=s==='group'?'':'none';
+    document.getElementById('singles-sf-setup').style.display=s!=='group'?'':'none';
+    if(s==='group') renderSinglesFixtures();
+    if(s==='sf') document.getElementById('singles-ko-title').textContent='Semi Final';
+    if(s==='f') document.getElementById('singles-ko-title').textContent='Final';
   });
 });
-document.getElementById('grp-a').addEventListener('click',function(){singlesGroup='A';document.getElementById('grp-a').classList.add('active');document.getElementById('grp-b').classList.remove('active');});
-document.getElementById('grp-b').addEventListener('click',function(){singlesGroup='B';document.getElementById('grp-b').classList.add('active');document.getElementById('grp-a').classList.remove('active');});
+document.getElementById('grp-a').addEventListener('click',function(){
+  singlesGroup='A';
+  document.getElementById('grp-a').classList.add('active');document.getElementById('grp-b').classList.remove('active');
+  renderSinglesFixtures();
+});
+document.getElementById('grp-b').addEventListener('click',function(){
+  singlesGroup='B';
+  document.getElementById('grp-b').classList.add('active');document.getElementById('grp-a').classList.remove('active');
+  renderSinglesFixtures();
+});
 [1,2,3,4].forEach(function(d){
   document.getElementById('sday-'+d).addEventListener('click',function(){
     singlesDay=d;[1,2,3,4].forEach(function(x){document.getElementById('sday-'+x).classList.toggle('active',x===d);});
   });
 });
+
+function renderSinglesFixtures(){
+  var el=document.getElementById('singles-fixtures-list');
+  el.innerHTML='<div class="card-title">Group '+singlesGroup+' Fixtures</div>';
+  var fixtures=singlesGroup==='A'?SINGLES_A_FIXTURES:SINGLES_B_FIXTURES;
+  fixtures.forEach(function(fix){
+    var played=Object.values(matches).find(function(m){return m.type==='singles'&&m.fid===fix.fid;});
+    appendFixtureItem(el,fix.fid,fix.team1,fix.team2,played,'league',false,'singles');
+  });
+}
+
 document.getElementById('start-singles-btn').addEventListener('click',function(){
   var t1=(document.getElementById('p1').value||'').trim();
   var t2=(document.getElementById('p2').value||'').trim();
   if(!t1||!t2){alert('Enter both player names.');return;}
+  var fid=singlesStage==='semifinal'?KO_FIDS.sSF1+'_'+Date.now():KO_FIDS.sFinal+'_'+Date.now();
   currentMatch=null;
-  var m={id:Date.now(),type:'singles',stage:singlesStage,group:singlesStage==='group'?singlesGroup:null,day:singlesDay,
+  var m={id:Date.now(),fid:fid,type:'singles',stage:singlesStage,group:null,day:singlesDay,
     team1:t1,team2:t2,sets:[],currentSet:{s1:0,s2:0,history:[]},setWins:[0,0],done:false,winner:null,locked:false};
   currentMatch=m;saveMatch(m);showScoreSubview('live');renderLive();
 });
@@ -408,7 +480,7 @@ function renderFixtures(){
   el.innerHTML='<div class="card-title">League Fixtures</div>';
   DOUBLES_FIXTURES.forEach(function(fix){
     var played=Object.values(matches).find(function(m){return m.type==='doubles'&&m.fid===fix.fid;});
-    appendFixtureItem(el,fix.fid,fix.team1,fix.team2,played,'league',false);
+    appendFixtureItem(el,fix.fid,fix.team1,fix.team2,played,'league',false,'doubles');
   });
   var standings=getStandings('doubles',null);
   // All 10 league matches done = all 5 teams have played 4 matches each
@@ -424,12 +496,12 @@ function renderFixtures(){
   var sf1played=Object.values(matches).find(function(m){return m.fid===KO_FIDS.dSF1;});
   var sf2played=Object.values(matches).find(function(m){return m.fid===KO_FIDS.dSF2;});
   var finalPlayed=Object.values(matches).find(function(m){return m.fid===KO_FIDS.dFinal;});
-  appendFixtureItem(el,KO_FIDS.dSF1,sf1t1,sf1t2,sf1played,'SF1',!leagueDone);
-  appendFixtureItem(el,KO_FIDS.dSF2,sf2t1,sf2t2,sf2played,'SF2',!leagueDone);
-  appendFixtureItem(el,KO_FIDS.dFinal,getKOWinner(KO_FIDS.dSF1)||'TBD',getKOWinner(KO_FIDS.dSF2)||'TBD',finalPlayed,'Final',!(getKOWinner(KO_FIDS.dSF1)&&getKOWinner(KO_FIDS.dSF2)));
+  appendFixtureItem(el,KO_FIDS.dSF1,sf1t1,sf1t2,sf1played,'SF1',!leagueDone,'doubles');
+  appendFixtureItem(el,KO_FIDS.dSF2,sf2t1,sf2t2,sf2played,'SF2',!leagueDone,'doubles');
+  appendFixtureItem(el,KO_FIDS.dFinal,getKOWinner(KO_FIDS.dSF1)||'TBD',getKOWinner(KO_FIDS.dSF2)||'TBD',finalPlayed,'Final',!(getKOWinner(KO_FIDS.dSF1)&&getKOWinner(KO_FIDS.dSF2)),'doubles');
 }
 
-function appendFixtureItem(el,fid,t1,t2,played,label,isLocked){
+function appendFixtureItem(el,fid,t1,t2,played,label,isLocked,itemType){
   var isDone=played&&played.locked;
   var isLive=played&&!played.locked;
   var item=document.createElement('div');item.className='fixture-item';
@@ -445,20 +517,24 @@ function appendFixtureItem(el,fid,t1,t2,played,label,isLocked){
   if(!isDone&&!isLocked){
     var btn=document.createElement('button');btn.className='btn btn-primary btn-sm';
     btn.textContent=isLive?'Resume':'Start';
-    btn.addEventListener('click',(function(f,p,tt1,tt2){
-      return function(){startFixture(f,p,tt1,tt2);};
-    })(fid,played||null,t1,t2));
+    btn.addEventListener('click',(function(f,p,tt1,tt2,tp){
+      return function(){startFixture(f,p,tt1,tt2,tp);};
+    })(fid,played||null,t1,t2,itemType));
     right.appendChild(btn);
   }
   item.appendChild(infoDiv);item.appendChild(right);el.appendChild(item);
 }
 
-function startFixture(fid,existing,t1,t2){
-  currentMatch=null;
+function startFixture(fid,existing,t1,t2,type){
   var isKO=(fid===KO_FIDS.dSF1||fid===KO_FIDS.dSF2||fid===KO_FIDS.dFinal);
-  var m=existing||{id:Date.now(),fid:fid,type:'doubles',stage:isKO?'knockout':'league',
-    group:'League',day:doublesDay,team1:t1,team2:t2,
-    sets:[],currentSet:{s1:0,s2:0,history:[]},setWins:[0,0],done:false,winner:null,locked:false};
+  var stage=type==='singles'?'group':isKO?'knockout':'league';
+  currentMatch=null;
+  var m=existing||{
+    id:Date.now(),fid:fid,type:type,stage:stage,
+    group:type==='singles'?singlesGroup:'League',day:type==='singles'?singlesDay:doublesDay,
+    team1:t1,team2:t2,sets:[],currentSet:{s1:0,s2:0,history:[]},
+    setWins:[0,0],done:false,winner:null,locked:false
+  };
   if(!existing) saveMatch(m);
   currentMatch=m;showScoreSubview('live');renderLive();
 }
@@ -515,7 +591,9 @@ function addPoint(player){
 function endSet(m){
   var s=m.currentSet,w=s.s1>s.s2?1:2;
   m.sets.push({s1:s.s1,s2:s.s2,winner:w});m.setWins[w-1]++;m.currentSet={s1:0,s2:0,history:[]};
-  if(m.setWins[0]===2||m.setWins[1]===2){
+  var isFinal=m.stage==='final';
+  var setsToWin=isFinal?3:2;
+  if(m.setWins[0]===setsToWin||m.setWins[1]===setsToWin){
     m.done=true;m.winner=m.setWins[0]===2?1:2;saveMatch(m);renderLive();
     showOverlay('🏆 '+(m.winner===1?m.team1:m.team2).split(' ')[0]+' Wins!','Sets: '+m.setWins[0]+'-'+m.setWins[1],
       [{label:'🔒 Lock Match',fn:lockMatch},{label:'Keep Editing',fn:closeOverlay}],true);return;
