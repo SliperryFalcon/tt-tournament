@@ -478,7 +478,10 @@ function addFixRow(el,fid,t1,t2,played,type,stage,locked){
     var btn=document.createElement('button'); btn.className='btn btn-primary btn-sm';
     btn.textContent=isLive?'Resume':'Start';
     btn.addEventListener('click',(function(fi,pl,tt1,tt2,tp,ts){
-      return function(){ startMatch(fi,pl,tt1,tt2,tp,ts); };
+      return function(){
+        var msg=pl?'Enter PIN to resume this match':'Enter PIN to start this match';
+        askPin(msg,'start',null,function(){ startMatch(fi,pl,tt1,tt2,tp,ts); });
+      };
     })(fid,played,t1,t2,type,stage));
     right.appendChild(btn);
   }
@@ -654,11 +657,20 @@ document.getElementById('pin-ok').addEventListener('click',function(){
     liveMatch=m; fbSet(m);
     sMode=m.type==='doubles'?'doubles':'singles';
     goTo('score'); showPane('live'); renderLive();
+  } else if(pendingPin.action==='start' && pendingPin.cb){
+    pendingPin.cb();
   }
   pendingPin=null;
 });
 document.getElementById('pin-input').addEventListener('keydown',function(e){ if(e.key==='Enter') document.getElementById('pin-ok').click(); });
-function askPin(msg,action,id){ pendingPin={action:action,id:id}; document.getElementById('pin-msg').textContent=msg; document.getElementById('pin-err').textContent=''; document.getElementById('pin-input').value=''; document.getElementById('pin-modal').style.display='flex'; setTimeout(function(){ document.getElementById('pin-input').focus(); },100); }
+function askPin(msg,action,id,cb){
+  pendingPin={action:action,id:id,cb:cb||null};
+  document.getElementById('pin-msg').textContent=msg;
+  document.getElementById('pin-err').textContent='';
+  document.getElementById('pin-input').value='';
+  document.getElementById('pin-modal').style.display='flex';
+  setTimeout(function(){ document.getElementById('pin-input').focus(); },100);
+}
 document.getElementById('reset-btn').addEventListener('click',function(){ askPin('Enter PIN to reset all data','reset',null); });
 
 // ============================================================
