@@ -7,7 +7,8 @@
 <meta name="apple-mobile-web-app-title" content="TT Tournament">
 <title>TT Tournament 2026</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html{touch-action:manipulation}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0f1b2d;color:#e8edf5;min-height:100vh}
 .app{max-width:480px;margin:0 auto;padding:0 0 80px}
 .nav{display:flex;background:#162236;border-bottom:1px solid #1e3a5f;position:sticky;top:0;z-index:100}
@@ -324,7 +325,15 @@ db.ref('matches').on('value',function(snap){
   if(ap){
     var pid=ap.id.replace('page-','');
     var liveVisible=document.getElementById('score-live').style.display!=='none';
-    if(pid==='home') renderHome();
+    if(pid==='home') // Prevent double-tap zoom
+var lastTap=0;
+document.addEventListener('touchend',function(e){
+  var now=Date.now();
+  if(now-lastTap<300){e.preventDefault();}
+  lastTap=now;
+},{passive:false});
+
+renderHome();
     if(pid==='table') showStandingsTab(currentStandingsTab);
     if(pid==='matches') renderMatches();
     // Only refresh fixtures if doubles list is showing AND we are NOT in a live match
