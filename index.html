@@ -349,9 +349,16 @@ function goTo(p){
   document.getElementById('nav-'+p).classList.add('active');
   if(p==='home') renderHome();
   if(p==='score'){
-    // Only reset if NOT currently in a live match
     if(isLiveHidden()){
-      showPane('singles');
+      if(sMode==='doubles'){
+        document.getElementById('tab-d').classList.add('active');
+        document.getElementById('tab-s').classList.remove('active');
+        showPane('doubles');
+      } else {
+        document.getElementById('tab-s').classList.add('active');
+        document.getElementById('tab-d').classList.remove('active');
+        showPane('singles');
+      }
     }
   }
   if(p==='table') renderStandings(standTab);
@@ -361,7 +368,7 @@ function goTo(p){
 // ============================================================
 // SCORE PANE MANAGEMENT
 // ============================================================
-function showPane(which){ // 'singles' | 'doubles' | 'live'
+function showPane(which){
   document.getElementById('pane-singles').style.display = which==='singles'?'':'none';
   document.getElementById('pane-doubles').style.display = which==='doubles'?'':'none';
   document.getElementById('pane-live').style.display    = which==='live'   ?'':'none';
@@ -383,6 +390,7 @@ document.getElementById('tab-d').addEventListener('click',function(){
   document.getElementById('tab-d').classList.add('active');
   document.getElementById('tab-s').classList.remove('active');
   showPane('doubles');
+  setTimeout(function(){ renderDFixtures(); }, 50);
 });
 
 // Singles stage
