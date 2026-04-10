@@ -355,6 +355,20 @@ function goTo(p){
   if(p==='home') renderHome();
   if(p==='score'){
     if(isLiveHidden()){
+      // Check if there's an unfinished match in Firebase — auto-resume it
+      var inProgress=Object.values(matches).find(function(m){ return !m.locked; });
+      if(inProgress){
+        liveMatch=JSON.parse(JSON.stringify(inProgress));
+        if(!liveMatch.cs) liveMatch.cs={s1:0,s2:0,hist:[]};
+        if(!liveMatch.sw) liveMatch.sw=[0,0];
+        if(!liveMatch.sets) liveMatch.sets=[];
+        sMode=liveMatch.type;
+        document.getElementById('tab-s').classList.toggle('active',liveMatch.type==='singles');
+        document.getElementById('tab-d').classList.toggle('active',liveMatch.type==='doubles');
+        showPane('live');
+        renderLive();
+        return;
+      }
       if(sMode==='doubles'){
         document.getElementById('tab-d').classList.add('active');
         document.getElementById('tab-s').classList.remove('active');
