@@ -317,6 +317,11 @@ db.ref('.info/connected').on('value',function(s){
 // Firebase listener — ONLY updates non-scoring UI
 db.ref('matches').on('value',function(snap){
   matches = snap.val()||{};
+  // If there's a live match in Firebase and we don't have one loaded, restore it
+  if(!liveMatch){
+    var live=Object.values(matches).find(function(m){ return !m.done && !m.locked && m.sets && m.sets.length>0; });
+    if(live) liveMatch=JSON.parse(JSON.stringify(live));
+  }
   // Never touch pane-live or liveMatch — only refresh passive views
   var ap = document.querySelector('.page.active');
   if(!ap) return;
@@ -488,7 +493,9 @@ function addFixRow(el,fid,t1,t2,played,type,stage,locked){
     btn.addEventListener('click',(function(fi,pl,tt1,tt2,tp,ts){
       return function(){
         var msg=pl?'Enter PIN to resume this match':'Enter PIN to start this match';
-        askPin(msg,'start',null,function(){ startMatch(fi,pl,tt1,tt2,tp,ts); });
+        askPin(msg,'start',null,function(){
+          startMatch(fi,pl||findMatch(fi),tt1,tt2,tp,ts);
+        });
       };
     })(fid,played,t1,t2,type,stage));
     right.appendChild(btn);
@@ -506,8 +513,16 @@ function startMatch(fid,existing,t1,t2,type,stage){
     id: Date.now(), fid:fid, type:type, stage:stage, group:group, day:day,
     t1:t1, t2:t2, sets:[], cs:{s1:0,s2:0,hist:[]}, sw:[0,0], done:false, w:null, locked:false
   };
+  // Ensure cs exists (old matches may not have it)
+  if(!m.cs) m.cs={s1:0,s2:0,hist:[]};
+  if(!m.sw) m.sw=[0,0];
+  if(!m.sets) m.sets=[];
   liveMatch = m;
+  sMode = type;
   if(!existing) fbSet(m);
+  // Make sure score tab and correct pane type is active
+  document.getElementById('tab-s').classList.toggle('active', type==='singles');
+  document.getElementById('tab-d').classList.toggle('active', type==='doubles');
   showPane('live');
   renderLive();
 }
