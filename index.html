@@ -483,7 +483,13 @@ document.getElementById('sg-b').addEventListener('click',function(){
 // FIXTURE RENDERING
 // ============================================================
 function findMatch(fid){ return Object.values(matches).find(function(m){ return m.fid===fid; })||null; }
-function koWinner(fid){ var m=findMatch(fid); return (m&&m.done&&m.locked)?(m.w===1?m.t1:m.t2):null; }
+function koWinner(fid){
+  var m=findMatch(fid);
+  if(!m||!m.done||!m.locked) return null;
+  var mw=m.w||(m.winner)||null;
+  var mt1=m.t1||m.team1||''; var mt2=m.t2||m.team2||'';
+  return mw===1?mt1:mt2;
+}
 
 function renderSFixtures(){
   var el=document.getElementById('singles-fix-list'); el.innerHTML='';
@@ -530,11 +536,14 @@ function mkMsg(txt){ var d=document.createElement('div'); d.style.cssText='font-
 function addFixRow(el,fid,t1,t2,played,type,stage,locked){
   var isDone=played&&played.locked;
   var isLive=played&&!played.locked;
+  var pw=played?(played.w||played.winner||null):null;
+  var pt1=played?(played.t1||played.team1||t1):t1;
+  var pt2=played?(played.t2||played.team2||t2):t2;
   var item=document.createElement('div'); item.className='fixture-item';
   var info=document.createElement('div'); info.style.flex='1';
   var koTag=(stage==='semifinal'||stage==='final'||stage==='knockout')?'<span class="ko-badge">'+(stage==='semifinal'?'SF':stage==='final'?'Final':'KO')+'</span>':'';
   info.innerHTML='<div class="fixture-teams">'+t1+'<span class="vs">vs</span>'+t2+koTag+'</div>'+
-    (isDone?'<div class="fixture-day">Day '+played.day+' · '+(played.w===1?played.t1:played.t2).split(' ')[0]+' won</div>':'');
+    (isDone?'<div class="fixture-day">Day '+played.day+' · '+(pw===1?pt1:pt2).split(' ')[0]+' won</div>':'');
   var right=document.createElement('div'); right.style.cssText='display:flex;align-items:center;gap:8px;flex-shrink:0';
   var badge=document.createElement('span');
   badge.className='fix-status '+(isDone?'fix-done':isLive?'fix-live':locked?'fix-locked':'fix-pending');
@@ -546,9 +555,7 @@ function addFixRow(el,fid,t1,t2,played,type,stage,locked){
     btn.addEventListener('click',(function(fi,pl,tt1,tt2,tp,ts){
       return function(){
         var msg=pl?'Enter PIN to resume this match':'Enter PIN to start this match';
-        askPin(msg,'start',null,function(){
-          startMatch(fi,pl||findMatch(fi),tt1,tt2,tp,ts);
-        });
+        askPin(msg,'start',null,function(){ startMatch(fi,pl||findMatch(fi),tt1,tt2,tp,ts); });
       };
     })(fid,played,t1,t2,type,stage));
     right.appendChild(btn);
@@ -812,13 +819,19 @@ function renderMatches(){
   list.sort(function(a,b){ return b.id-a.id; });
   if(!list.length){ el.innerHTML='<div class="empty">No matches found</div>'; return; }
   list.forEach(function(m){
-    var winner=m.done?(m.w===1?m.t1:m.t2):null;
-    var scores=m.sets.map(function(s){ return s.s1+'-'+s.s2; }).join(', ');
-    var sl=m.stage==='group'?'Group '+(m.group||''):m.stage==='league'?'League':m.stage==='semifinal'?'SF':m.stage==='knockout'?'KO':'Final';
+    // Support both old (team1/team2) and new (t1/t2) field names
+    var mt1=m.t1||m.team1||''; var mt2=m.t2||m.team2||'';
+    var mw=m.w||(m.winner)||null;
+    var mdone=m.done||false;
+    var msets=m.sets||[];
+    var winner=mdone?(mw===1?mt1:mt2):null;
+    var scores=msets.map(function(s){ return s.s1+'-'+s.s2; }).join(', ');
+    var mstage=m.stage||'group';
+    var sl=mstage==='group'?'Group '+(m.group||''):mstage==='league'?'League':mstage==='semifinal'?'SF':mstage==='knockout'?'KO':'Final';
     var item=document.createElement('div'); item.className='match-item';
-    item.innerHTML='<div class="match-teams">'+m.t1+'<span class="vs">vs</span>'+m.t2+'</div>'+
-      '<div class="match-meta"><span class="dot '+(m.done?'dot-done':m.sets.length?'dot-live':'dot-up')+'"></span>'+(m.type==='singles'?'Singles':'Doubles')+' · '+sl+' · Day '+m.day+'</div>'+
-      (m.done?'<div class="match-result">🏆 '+winner+' won · '+scores+'</div>':'<div class="match-result ongoing">In progress · '+(scores||'Not started')+'</div>');
+    item.innerHTML='<div class="match-teams">'+mt1+'<span class="vs">vs</span>'+mt2+'</div>'+
+      '<div class="match-meta"><span class="dot '+(mdone?'dot-done':msets.length?'dot-live':'dot-up')+'"></span>'+(m.type==='singles'?'Singles':'Doubles')+' · '+sl+' · Day '+m.day+'</div>'+
+      (mdone?'<div class="match-result">🏆 '+winner+' won · '+scores+'</div>':'<div class="match-result ongoing">In progress · '+(scores||'Not started')+'</div>');
     if(m.locked){ var btn=document.createElement('button'); btn.textContent='✏️ Edit (Admin)'; btn.className='btn btn-secondary btn-sm'; btn.style.marginTop='8px'; (function(id){ btn.addEventListener('click',function(){ askPin('Enter PIN to edit match','edit',id); }); })(m.id); item.appendChild(btn); }
     el.appendChild(item);
   });
@@ -830,17 +843,20 @@ function renderMatches(){
 function getStandings(type,group){
   var rel=Object.values(matches).filter(function(m){
     var isLeague=(m.stage==='group'||m.stage==='league');
-    return m.done&&m.locked&&m.type===type&&isLeague&&(type==='doubles'||m.group===group);
+    return m.done&&m.locked&&m.type===type&&isLeague&&(type==='doubles'||((m.group||m.group)=== group));
   });
   var p={};
   rel.forEach(function(m){
-    [m.t1,m.t2].forEach(function(t){ if(!p[t]) p[t]={name:t,mp:0,mw:0,ml:0,pts:0,sw:0,sl:0,pf:0,pa:0}; });
-    p[m.t1].mp++; p[m.t2].mp++;
-    var w=m.w===1?m.t1:m.t2, l=m.w===1?m.t2:m.t1;
+    var mt1=m.t1||m.team1||''; var mt2=m.t2||m.team2||'';
+    var mw=m.w||(m.winner)||null;
+    var msets=m.sets||[];
+    [mt1,mt2].forEach(function(t){ if(!p[t]) p[t]={name:t,mp:0,mw:0,ml:0,pts:0,sw:0,sl:0,pf:0,pa:0}; });
+    p[mt1].mp++; p[mt2].mp++;
+    var w=mw===1?mt1:mt2, l=mw===1?mt2:mt1;
     p[w].mw++; p[w].pts+=3; p[l].ml++;
-    m.sets.forEach(function(s){
-      p[m.t1].pf+=s.s1; p[m.t1].pa+=s.s2; p[m.t2].pf+=s.s2; p[m.t2].pa+=s.s1;
-      if(s.w===1){p[m.t1].sw++;p[m.t2].sl++;}else{p[m.t2].sw++;p[m.t1].sl++;}
+    msets.forEach(function(s){
+      p[mt1].pf+=s.s1; p[mt1].pa+=s.s2; p[mt2].pf+=s.s2; p[mt2].pa+=s.s1;
+      if(s.w===1||s.winner===1){p[mt1].sw++;p[mt2].sl++;}else{p[mt2].sw++;p[mt1].sl++;}
     });
   });
   return Object.values(p).sort(function(a,b){
